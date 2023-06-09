@@ -1,0 +1,408 @@
+{
+  "targets": [
+    {
+      "isStage": true,
+      "name": "Stage",
+      "variables": {
+        "`jEk@4|i[#Fk?(8x)AV.-my variable": [
+          "我的变量",
+          0
+        ]
+      },
+      "lists": {},
+      "broadcasts": {},
+      "blocks": {},
+      "comments": {},
+      "currentCostume": 0,
+      "costumes": [
+        {
+          "assetId": "cd21514d0531fdffb22204e0ec5ed84a",
+          "name": "背景1",
+          "md5ext": "cd21514d0531fdffb22204e0ec5ed84a.svg",
+          "dataFormat": "svg",
+          "rotationCenterX": 240,
+          "rotationCenterY": 180
+        }
+      ],
+      "sounds": [
+        {
+          "assetId": "83a9787d4cb6f3b7632b4ddfebf74367",
+          "name": "啵",
+          "dataFormat": "wav",
+          "format": "",
+          "rate": 48000,
+          "sampleCount": 1123,
+          "md5ext": "83a9787d4cb6f3b7632b4ddfebf74367.wav"
+        }
+      ],
+      "volume": 100,
+      "layerOrder": 0,
+      "tempo": 60,
+      "videoTransparency": 50,
+      "videoState": "on",
+      "textToSpeechLanguage": null
+    },
+    {
+      "isStage": false,
+      "name": "角色1",
+      "variables": {},
+      "lists": {},
+      "broadcasts": {},
+      "blocks": {
+        "i)Lk~h^y:o_L,0idAEN?": {
+          "opcode": "event_whenflagclicked",
+          "next": "hhv_kTdo_Oho7iig8!EW",
+          "parent": null,
+          "inputs": {},
+          "fields": {},
+          "shadow": false,
+          "topLevel": true,
+          "x": 123,
+          "y": 150
+        },
+        "rOGOlBJ{2JMSpNL8VaAZ": {
+          "opcode": "control_forever",
+          "next": null,
+          "parent": "hhv_kTdo_Oho7iig8!EW",
+          "inputs": {
+            "SUBSTACK": [
+              2,
+              "Bq-ooj!le:Gt{S-3=Sfn"
+            ]
+          },
+          "fields": {},
+          "shadow": false,
+          "topLevel": false
+        },
+        "Bq-ooj!le:Gt{S-3=Sfn": {
+          "opcode": "control_if",
+          "next": null,
+          "parent": "rOGOlBJ{2JMSpNL8VaAZ",
+          "inputs": {
+            "CONDITION": [
+              2,
+              "m%ZX|_F5!t]Kcd;u;L!8"
+            ],
+            "SUBSTACK": [
+              2,
+              "DU~@*ul}|H@CnIRg/cM@"
+            ]
+          },
+          "fields": {},
+          "shadow": false,
+          "topLevel": false
+        },
+        "hhv_kTdo_Oho7iig8!EW": {
+          "opcode": "control_repeat",
+          "next": null,
+          "parent": "i)Lk~h^y:o_L,0idAEN?",
+          "inputs": {
+            "TIMES": [
+              1,
+              [
+                6,
+                "1234"
+              ]
+            ],
+            "SUBSTACK": [
+              2,
+              "NYvL9t3b9s=;gC=sum2s"
+            ]
+          },
+          "fields": {},
+          "shadow": false,
+          "topLevel": false
+        },
+        "NYvL9t3b9s=;gC=sum2s": {
+          "opcode": "motion_glidesecstoxy",
+          "next": null,
+          "parent": "hhv_kTdo_Oho7iig8!EW",
+          "inputs": {
+            "SECS": [
+              1,
+              [
+                4,
+                "100"
+              ]
+            ],
+            "X": [
+              1,
+              [
+                4,
+                "0"
+              ]
+            ],
+            "Y": [
+              1,
+              [
+                4,
+                "0"
+              ]
+            ]
+          },
+          "fields": {},
+          "shadow": false,
+          "topLevel": false
+        },
+        "m%ZX|_F5!t]Kcd;u;L!8": {
+          "opcode": "operator_equals",
+          "next": null,
+          "parent": "Bq-ooj!le:Gt{S-3=Sfn",
+          "inputs": {
+            "OPERAND1": [
+              3,
+              [
+                12,
+                "我的变量",
+                "`jEk@4|i[#Fk?(8x)AV.-my variable"
+              ],
+              [
+                10,
+                ""
+              ]
+            ],
+            "OPERAND2": [
+              1,
+              [
+                10,
+                "50"
+              ]
+            ]
+          },
+          "fields": {},
+          "shadow": false,
+          "topLevel": false
+        },
+        "Yc,PB)XmVp;9OxtGdwzM": {
+          "opcode": "sensing_keypressed",
+          "next": null,
+          "parent": "DU~@*ul}|H@CnIRg/cM@",
+          "inputs": {
+            "KEY_OPTION": [
+              1,
+              "PrA)sWRCTf)r2|4]00@s"
+            ]
+          },
+          "fields": {},
+          "shadow": false,
+          "topLevel": false
+        },
+        "PrA)sWRCTf)r2|4]00@s": {
+          "opcode": "sensing_keyoptions",
+          "next": null,
+          "parent": "Yc,PB)XmVp;9OxtGdwzM",
+          "inputs": {},
+          "fields": {
+            "KEY_OPTION": [
+              "space",
+              null
+            ]
+          },
+          "shadow": true,
+          "topLevel": false
+        },
+        "DU~@*ul}|H@CnIRg/cM@": {
+          "opcode": "control_if_else",
+          "next": null,
+          "parent": "Bq-ooj!le:Gt{S-3=Sfn",
+          "inputs": {
+            "CONDITION": [
+              2,
+              "Yc,PB)XmVp;9OxtGdwzM"
+            ],
+            "SUBSTACK": [
+              2,
+              "4_k3oG7YIyR.)*Z:HPu6"
+            ],
+            "SUBSTACK2": [
+              2,
+              "6]bt8`|7K[)zrtL{CYg_"
+            ]
+          },
+          "fields": {},
+          "shadow": false,
+          "topLevel": false
+        },
+        "4_k3oG7YIyR.)*Z:HPu6": {
+          "opcode": "looks_thinkforsecs",
+          "next": null,
+          "parent": "DU~@*ul}|H@CnIRg/cM@",
+          "inputs": {
+            "MESSAGE": [
+              1,
+              [
+                10,
+                "嗯……"
+              ]
+            ],
+            "SECS": [
+              1,
+              [
+                4,
+                "222"
+              ]
+            ]
+          },
+          "fields": {},
+          "shadow": false,
+          "topLevel": false
+        },
+        "6]bt8`|7K[)zrtL{CYg_": {
+          "opcode": "looks_thinkforsecs",
+          "next": null,
+          "parent": "DU~@*ul}|H@CnIRg/cM@",
+          "inputs": {
+            "MESSAGE": [
+              1,
+              [
+                10,
+                "嗯……"
+              ]
+            ],
+            "SECS": [
+              1,
+              [
+                4,
+                "333"
+              ]
+            ]
+          },
+          "fields": {},
+          "shadow": false,
+          "topLevel": false
+        },
+        "Iu~bLti$|HM3K7%wKoEv": {
+          "opcode": "event_whenflagclicked",
+          "next": "WL11?DR1aBCav,NgV(ac",
+          "parent": null,
+          "inputs": {},
+          "fields": {},
+          "shadow": false,
+          "topLevel": true,
+          "x": -82,
+          "y": -15
+        },
+        "PT)?@~TlKnfQf./=8]}U": {
+          "opcode": "operator_random",
+          "next": null,
+          "parent": "WL11?DR1aBCav,NgV(ac",
+          "inputs": {
+            "FROM": [
+              1,
+              [
+                4,
+                "1"
+              ]
+            ],
+            "TO": [
+              1,
+              [
+                4,
+                "10"
+              ]
+            ]
+          },
+          "fields": {},
+          "shadow": false,
+          "topLevel": false
+        },
+        "WL11?DR1aBCav,NgV(ac": {
+          "opcode": "motion_movesteps",
+          "next": "(HAVSI~g`EyStz_SAh4-",
+          "parent": "Iu~bLti$|HM3K7%wKoEv",
+          "inputs": {
+            "STEPS": [
+              3,
+              "PT)?@~TlKnfQf./=8]}U",
+              [
+                4,
+                "10"
+              ]
+            ]
+          },
+          "fields": {},
+          "shadow": false,
+          "topLevel": false
+        },
+        "(HAVSI~g`EyStz_SAh4-": {
+          "opcode": "control_stop",
+          "next": null,
+          "parent": "WL11?DR1aBCav,NgV(ac",
+          "inputs": {},
+          "fields": {
+            "STOP_OPTION": [
+              "all",
+              null
+            ]
+          },
+          "shadow": false,
+          "topLevel": false,
+          "mutation": {
+            "tagName": "mutation",
+            "children": [],
+            "hasnext": "false"
+          }
+        }
+      },
+      "comments": {
+        ")-UPFynC3^=yV|/t,;Z;": {
+          "blockId": "j]|pPi,}v%egSx#ifema",
+          "x": 330.2857142857143,
+          "y": 182.28571428571428,
+          "width": 200,
+          "height": 200,
+          "minimized": true,
+          "text": "hello"
+        }
+      },
+      "currentCostume": 0,
+      "costumes": [
+        {
+          "assetId": "bcf454acf82e4504149f7ffe07081dbc",
+          "name": "造型1",
+          "bitmapResolution": 1,
+          "md5ext": "bcf454acf82e4504149f7ffe07081dbc.svg",
+          "dataFormat": "svg",
+          "rotationCenterX": 48,
+          "rotationCenterY": 50
+        },
+        {
+          "assetId": "0fb9be3e8397c983338cb71dc84d0b25",
+          "name": "造型2",
+          "bitmapResolution": 1,
+          "md5ext": "0fb9be3e8397c983338cb71dc84d0b25.svg",
+          "dataFormat": "svg",
+          "rotationCenterX": 46,
+          "rotationCenterY": 53
+        }
+      ],
+      "sounds": [
+        {
+          "assetId": "83c36d806dc92327b9e7049a565c6bff",
+          "name": "喵",
+          "dataFormat": "wav",
+          "format": "",
+          "rate": 48000,
+          "sampleCount": 40681,
+          "md5ext": "83c36d806dc92327b9e7049a565c6bff.wav"
+        }
+      ],
+      "volume": 100,
+      "layerOrder": 1,
+      "visible": true,
+      "x": 0,
+      "y": 0,
+      "size": 100,
+      "direction": 90,
+      "draggable": false,
+      "rotationStyle": "all around"
+    }
+  ],
+  "monitors": [],
+  "extensions": [],
+  "meta": {
+    "semver": "3.0.0",
+    "vm": "0.2.0-prerelease.20210907050649",
+    "agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36 Edg/114.0.1823.37"
+  }
+}

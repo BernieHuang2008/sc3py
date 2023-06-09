@@ -1,0 +1,17 @@
+{
+  "control_repeat": {
+    "code": "for _ in range(__!getval.['TIMES'][1][1]!__):\n    __!getcode.['SUBSTACK'][1]!__\n",
+    "indents": [
+      0,
+      4
+    ]
+  },
+  "motion_glidesecstoxy": {
+    "code": "self.glide_to(__!getval.['X'][1][1]!__, __!getval.['Y'][1][1]!__, secs=__!getval.['SECS'][1][1]!__)\n",
+    "indents": [
+      0,
+      0,
+      0
+    ]
+  }
+}

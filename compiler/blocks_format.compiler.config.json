@@ -1,15 +1,90 @@
 {
   "control_repeat": {
-    "code": "for _ in range(__!getval.['TIMES'][1][1]!__):\n    __!getcode.['SUBSTACK'][1]!__\n",
+    "code": "for _ in range(__!getcode.['TIMES'][1]!__):  # repeat __!getcode.['TIMES'][1]!__ times.\n    __!getcode.['SUBSTACK'][1]!__\n",
     "indents": [
+      0,
       0,
       4
     ]
   },
   "motion_glidesecstoxy": {
-    "code": "self.glide_to(__!getval.['X'][1][1]!__, __!getval.['Y'][1][1]!__, secs=__!getval.['SECS'][1][1]!__)\n",
+    "code": "self.glide_to(__!getcode.['X'][1]!__, __!getcode.['Y'][1]!__, secs=__!getcode.['SECS'][1]!__)  # gilde to (__!getcode.['X'][1]!__, __!getcode.['Y'][1]!__) in __!getcode.['SECS'][1]!__s.\n",
     "indents": [
       0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ]
+  },
+  "control_forever": {
+    "code": "while True:  # infinity loop.\n    __!getcode.['SUBSTACK'][1]!__\n",
+    "indents": [
+      4
+    ]
+  },
+  "control_if": {
+    "code": "if __!getcode.['CONDITION'][1]!__:\n    __!getcode.['SUBSTACK'][1]!__\n",
+    "indents": [
+      0,
+      4
+    ]
+  },
+  "control_if_else": {
+    "code": "if __!getcode.['CONDITION'][1]!__:\n    __!getcode.['SUBSTACK'][1]!__\nelse:\n    __!getcode.['SUBSTACK2'][1]!__\n",
+    "indents": [
+      0,
+      4,
+      4
+    ]
+  },
+  "looks_thinkforsecs": {
+    "code": "self.think_bubble(__!getcode.['MESSAGE'][1]!__, secs=__!getcode.['SECS'][1]!__)  # think __!getcode.['MESSAGE'][1]!__ for __!getcode.['SECS'][1]!__s.\n",
+    "indents": [
+      0,
+      0,
+      0,
+      0
+    ]
+  },
+  "operator_equals": {
+    "code": "__!getcode.['OPERAND1'][1]!__ == __!getcode.['OPERAND2'][1]!__",
+    "indents": [
+      0,
+      0
+    ]
+  },
+  "sensing_keypressed": {
+    "code": "game.is_keypressed(__!getcode.['KEY_OPTION'][1]!__)",
+    "indents": [
+      0,
+      0
+    ]
+  },
+  "sensing_keyoptions": {
+    "code": "'__!getval.['KEY_OPTION'][0]!__'",
+    "indents": [
+      0
+    ]
+  },
+  "motion_movesteps": {
+    "code": "self.move_forward(__!getcode.['STEPS'][1]!__)  # move forward for __!getcode.['STEPS'][1]!__ steps.\n",
+    "indents": [
+      0,
+      0
+    ]
+  },
+  "operator_random": {
+    "code": "scgame.random(__!getcode.['FROM'][1]!__, __!getcode.['TO'][1]!__)",
+    "indents": [
+      0,
+      0
+    ]
+  },
+  "control_stop": {
+    "code": "game.stop('__!getval.['STOP_OPTION'][0]!__')  # stop __!getval.['STOP_OPTION'][0]!__.\n",
+    "indents": [
       0,
       0
     ]

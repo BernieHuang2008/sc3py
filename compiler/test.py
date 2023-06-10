@@ -50,11 +50,13 @@ def get_blocks(sprite):
             if v_type == 'getval':
                 # If the type is 'getval', then get the value of the variable and fill the blank directly (adding indent).
                 code = code.replace('__!' + v_str + '!__',
-                                    eval("block['fields']" + v_content).replace('\n', '\n' + indent))
+                                    eval("block['fields']" + v_content).replace('\n', '\n' + indent),
+                                    1)  # replace only one times.
             elif v_type == 'getcode':
                 # If the type is 'getcode', then get the code of the variable and parse it. Fill the blank with the parsed code (adding indent).
                 code = code.replace('__!' + v_str + '!__',
-                                    parse_each_block(eval("block['inputs']" + v_content)).replace('\n', '\n' + indent))
+                                    parse_each_block(eval("block['inputs']" + v_content)).replace('\n', '\n' + indent),
+                                    1)
 
         if block['next'] is None:
             # if the block is the last block, just return the code.
@@ -73,12 +75,20 @@ def get_blocks(sprite):
             # If the block is a head_block, then add it to 'head_blocks'.
             head_blocks.append(block)
 
+    class_code_head = "class Generate_{}(scgame.Sprite):\n".format(sprite['name'].replace(' ', '_'))
+    class_code = ""
+    active_condition_count = {}
     for hb in head_blocks:  # hb stands for head_block.
         active_condition = hb['opcode']  # Get the active condition of the script.
+        active_condition_count[active_condition] = active_condition_count.get(active_condition, 0) + 1
         _next = hb['next']  # Get the next block's ID of the script.
         code = parse_each_block(_next)  # Parse the next block, the code will be returned.
-        res_file.write(
-            '\nCONDITION [{}]\n    {}'.format(active_condition, code.replace('\n', '\n    ')))  # Print the code.
+        class_code += '\ndef {}_{}(self):\n    {}'.format(active_condition,
+                                                          active_condition_count[active_condition],
+                                                          code.replace('\n', '\n    ')
+                                                          )  # Print the code.
+
+    res_file.write(class_code_head + class_code.replace('\n', '\n    '))
 
 
 if __name__ == '__main__':

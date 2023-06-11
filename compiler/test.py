@@ -85,11 +85,11 @@ def parse_sprite(sprite):
 
             if block['next'] is None:
                 # if the block is the last block, just return the code.
-                return code
+                return code.strip()
             else:
                 # else, parse the next block and return the code.
                 code += parse_each_block(block['next'])
-                return code
+                return code.strip()
 
     # get all blocks
     blocks = sprite['blocks']
@@ -114,22 +114,22 @@ def parse_sprite(sprite):
         _next = hb['next']
         code = parse_each_block(_next)
         # generate code
-        class_code += '\ndef {}_{}(self):\n    {}'.format(active_condition,
-                                                          active_condition_count[active_condition],
-                                                          code.replace('\n', '\n    ')
-                                                          )
+        class_code += '\nasync def {}_{}(self):\n    {}'.format(active_condition,
+                                                                active_condition_count[active_condition],
+                                                                code.replace('\n', '\n    ')
+                                                                )
 
     # generate event func.
     for condition in active_condition_count:
-        class_code += '\n\ndef {}(self):\n    {}\n\n\n'.format(condition, '\n    '.join(
-            ["threading.Thread(target=self.{}_{})".format(condition, i + 1) for i in
+        class_code += '\n\nasync def {}(self):\n    {}\n\n\n'.format(condition, '\n    '.join(
+            ["await self.{}_{}()".format(condition, i + 1) for i in
              range(active_condition_count[condition])]))
 
     # write to file
     res_file.write(class_code_head + class_code.replace('\n', '\n    '))
 
 
-
-
 if __name__ == '__main__':
+    # write import
+    res_file.write("import asyncio\n\n")
     parse_sprite(sprites['角色1'])

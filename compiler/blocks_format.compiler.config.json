@@ -1,6 +1,6 @@
 {
   "control_repeat": {
-    "code": "for _ in range(__!inputs.['TIMES'][1]!__):  # repeat __!inputs.['TIMES'][1]!__ times.\n    __!inputs.['SUBSTACK'][1]!__\n    await asyncio.sleep(0)  # [DO NOT DEL] yield to other coroutines.\n",
+    "code": "for _ in range(__!inputs.['TIMES'][1]!__):  # repeat __!inputs.['TIMES'][1]!__ times.\n    __!inputs.['SUBSTACK'][1]!__\n",
     "indents": [
       0,
       0,
@@ -8,7 +8,7 @@
     ]
   },
   "motion_glidesecstoxy": {
-    "code": "await self.glide_to(__!inputs.['X'][1]!__, __!inputs.['Y'][1]!__, secs=__!inputs.['SECS'][1]!__)  # gilde to (__!inputs.['X'][1]!__, __!inputs.['Y'][1]!__) in __!inputs.['SECS'][1]!__s.\n",
+    "code": "self.glide_to(__!inputs.['X'][1]!__, __!inputs.['Y'][1]!__, secs=__!inputs.['SECS'][1]!__)  # gilde to (__!inputs.['X'][1]!__, __!inputs.['Y'][1]!__) in __!inputs.['SECS'][1]!__s.\n",
     "indents": [
       0,
       0,
@@ -19,7 +19,7 @@
     ]
   },
   "control_forever": {
-    "code": "while True:  # infinity loop.\n    __!inputs.['SUBSTACK'][1]!__\n    await asyncio.sleep(0)  # [DO NOT DEL] yield to other coroutines.\n",
+    "code": "while True:  # infinity loop.\n    __!inputs.['SUBSTACK'][1]!__\n",
     "indents": [
       4
     ]
@@ -40,7 +40,7 @@
     ]
   },
   "looks_thinkforsecs": {
-    "code": "await self.think_bubble(__!inputs.['MESSAGE'][1]!__, secs=__!inputs.['SECS'][1]!__)  # think __!inputs.['MESSAGE'][1]!__ for __!inputs.['SECS'][1]!__s.\n",
+    "code": "self.think_bubble(__!inputs.['MESSAGE'][1]!__, secs=__!inputs.['SECS'][1]!__)  # think __!inputs.['MESSAGE'][1]!__ for __!inputs.['SECS'][1]!__s.\n",
     "indents": [
       0,
       0,
@@ -69,7 +69,7 @@
     ]
   },
   "motion_movesteps": {
-    "code": "await self.move_forward(__!inputs.['STEPS'][1]!__)  # move forward for __!inputs.['STEPS'][1]!__ steps.\n",
+    "code": "self.move_forward(__!inputs.['STEPS'][1]!__)  # move forward for __!inputs.['STEPS'][1]!__ steps.\n",
     "indents": [
       0,
       0

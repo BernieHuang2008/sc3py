@@ -114,15 +114,15 @@ def parse_sprite(sprite):
         _next = hb['next']
         code = parse_each_block(_next)
         # generate code
-        class_code += '\nasync def {}_{}(self):\n    {}'.format(active_condition,
-                                                                active_condition_count[active_condition],
-                                                                code.replace('\n', '\n    ')
-                                                                )
+        class_code += '\ndef {}_{}(self):\n    {}'.format(active_condition,
+                                                          active_condition_count[active_condition],
+                                                          code.replace('\n', '\n    ')
+                                                          )
 
     # generate event func.
     for condition in active_condition_count:
-        class_code += '\n\nasync def {}(self):\n    {}\n\n\n'.format(condition, '\n    '.join(
-            ["await self.{}_{}()".format(condition, i + 1) for i in
+        class_code += '\n\ndef {}(self):\n    {}\n\n\n'.format(condition, '\n    '.join(
+            ["threading.Thread(target=self.{}_{})".format(condition, i + 1) for i in
              range(active_condition_count[condition])]))
 
     # write to file
@@ -131,5 +131,5 @@ def parse_sprite(sprite):
 
 if __name__ == '__main__':
     # write import
-    res_file.write("import asyncio\n\n")
+    res_file.write("import threading\n\n")
     parse_sprite(sprites['角色1'])

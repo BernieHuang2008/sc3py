@@ -131,5 +131,5 @@ def parse_sprite(sprite):
 
 if __name__ == '__main__':
     # write import
-    res_file.write("import threading\n\n")
+    res_file.write("import threading\nimport scgame\n\n")
     parse_sprite(sprites['motion'])

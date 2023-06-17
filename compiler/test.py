@@ -99,8 +99,8 @@ def parse_sprite(sprite):
     for b_id in blocks:  # b_id for 'block_id'.
         block = blocks[b_id]
         # check if it is a head block.
-        if 'when' in block['opcode']:
-            # add it to 'head_blocks'.
+        if 'when' in block['opcode'] or 'define' in block['opcode']:
+            # it's a "head_block".
             head_blocks.append(block)
 
     # generate code

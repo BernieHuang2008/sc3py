@@ -1,23 +1,24 @@
 import threading
 
-
-class Generate_角色1(scgame.Sprite):
+class Generate_motion(scgame.Sprite):
 
     def event_whenflagclicked_1(self):
-        for _ in range(1234):  # repeat 1234 times.
-            self.glide_to(0, 0, secs=100)  # gilde to (0, 0) in 100s.
-        while True:  # infinity loop.
-            if game.var('我的变量', '`jEk@4|i[#Fk?(8x)AV.-my variable') == '50':
-                if game.is_keypressed('space'):
-                    self.think_bubble('嗯……', secs=222)  # think '嗯……' for 222s.
-                else:
-                    self.think_bubble('嗯……', secs=333)  # think '嗯……' for 333s.
-
-    def event_whenflagclicked_2(self):
-        self.move_forward(scgame.random(1, 10))  # move forward for scgame.random(1, 10) steps.
         self.move_forward(10)  # move forward for 10 steps.
-        game.stop('all')  # stop all.
+        self.turn(15)  # turn right 15 degrees.
+        self.turn(-1 * 15)  # turn left 15 degrees.
+        self.go_to('_random_')  # go to '_random_'.
+        self.go_to(0, 0)  # go to (0, 0).
+        self.go_to('_random_', secs=1)  # glide to '_random_' in 1s.
+        self.go_to(0, 0, secs=1)  # gilde to (0, 0) in 1s.
+        self.point_towards(90)  # point in direction 90.
+        self.point_towards('_mouse_')  # point towards '_mouse_'.
+        self.change_x(10)  # change x by 10.
+        self.set_x(0)  # set x to 0.
+        self.change_y(10)  # change y by 10.
+        self.set_y(0)  # set y to 0.
+        if self.on_edge():
+            self.bounce()  # bounce if on edge.
+        self.restrict('rotation', 'left-right')  # set rotation style to left-right.
 
     def event_whenflagclicked(self):
         threading.Thread(target=self.event_whenflagclicked_1)
-        threading.Thread(target=self.event_whenflagclicked_2)

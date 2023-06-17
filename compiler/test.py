@@ -5,7 +5,7 @@ sprites = {}  # {sprite_name: sprite} The dict contains all the Sprites in this 
 res_file = open('result/main.py', 'w')  # Compiled Python code will be written to this file.
 
 # open Scratch Code File
-with open("project.json") as f:
+with open("project_allblocks.json") as f:
     j = json.load(f)
     # Get all Sprites in this program, and store them in 'sprites'.
     for sprite in j['targets']:
@@ -132,4 +132,4 @@ def parse_sprite(sprite):
 if __name__ == '__main__':
     # write import
     res_file.write("import threading\n\n")
-    parse_sprite(sprites['角色1'])
+    parse_sprite(sprites['motion'])

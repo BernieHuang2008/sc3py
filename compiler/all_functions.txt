@@ -1,0 +1,13 @@
+Sprite.move_forward()       # move forward ___ steps
+Sprite.turn()               # turn right ___ degrees
+Sprite.go_to()              # go to xy / somewhere [in ___ seconds]
+Sprite.point_towards()      # point towards ___ / something
+Sprite.change_x()           # change x by ___
+Sprite.change_y()           # change y by ___
+Sprite.set_x()              # set x to ___
+Sprite.set_y()              # set y to ___
+Sprite.on_edge()            # if on edge
+Sprite.bounce()             # bounce
+Sprite.restrict()           # add a restriction to Sprite
+
+

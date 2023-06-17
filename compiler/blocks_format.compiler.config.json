@@ -8,7 +8,7 @@
     ]
   },
   "motion_glidesecstoxy": {
-    "code": "self.glide_to(__!inputs.['X'][1]!__, __!inputs.['Y'][1]!__, secs=__!inputs.['SECS'][1]!__)  # gilde to (__!inputs.['X'][1]!__, __!inputs.['Y'][1]!__) in __!inputs.['SECS'][1]!__s.\n",
+    "code": "self.go_to(__!inputs.['X'][1]!__, __!inputs.['Y'][1]!__, secs=__!inputs.['SECS'][1]!__)  # gilde to (__!inputs.['X'][1]!__, __!inputs.['Y'][1]!__) in __!inputs.['SECS'][1]!__s.\n",
     "indents": [
       0,
       0,
@@ -84,6 +84,121 @@
   },
   "control_stop": {
     "code": "game.stop('__!fields.['STOP_OPTION'][0]!__')  # stop __!fields.['STOP_OPTION'][0]!__.\n",
+    "indents": [
+      0,
+      0
+    ]
+  },
+  "motion_turnright": {
+    "code": "self.turn(__!inputs.['DEGREES'][1]!__)  # turn right __!inputs.['DEGREES'][1]!__ degrees.\n",
+    "indents": [
+      0,
+      0
+    ]
+  },
+  "motion_turnleft": {
+    "code": "self.turn(-1 * __!inputs.['DEGREES'][1]!__)  # turn left __!inputs.['DEGREES'][1]!__ degrees.\n",
+    "indents": [
+      0,
+      0
+    ]
+  },
+  "motion_goto": {
+    "code": "self.go_to(__!inputs.['TO'][1]!__)  # go to __!inputs.['TO'][1]!__.\n",
+    "indents": [
+      0,
+      0
+    ]
+  },
+  "motion_goto_menu": {
+    "code": "'__!fields.['TO'][0]!__'",
+    "indents": [
+      0
+    ]
+  },
+  "motion_gotoxy": {
+    "code": "self.go_to(__!inputs.['X'][1]!__, __!inputs.['Y'][1]!__)  # go to (__!inputs.['X'][1]!__, __!inputs.['Y'][1]!__).\n",
+    "indents": [
+      0,
+      0,
+      0,
+      0
+    ]
+  },
+  "motion_glideto": {
+    "code": "self.go_to(__!inputs.['TO'][1]!__, secs=__!inputs.['SECS'][1]!__)  # glide to __!inputs.['TO'][1]!__ in __!inputs.['SECS'][1]!__s.\n",
+    "indents": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ]
+  },
+  "motion_glideto_menu": {
+    "code": "'__!fields.['TO'][0]!__'",
+    "indents": [
+      0
+    ]
+  },
+  "motion_pointindirection": {
+    "code": "self.point_towards(__!inputs.['DIRECTION'][1]!__)  # point in direction __!inputs.['DIRECTION'][1]!__.\n",
+    "indents": [
+      0,
+      0
+    ]
+  },
+  "motion_pointtowards": {
+    "code": "self.point_towards(__!inputs.['TOWARDS'][1]!__)  # point towards __!inputs.['TOWARDS'][1]!__.\n",
+    "indents": [
+      0,
+      0
+    ]
+  },
+  "motion_pointtowards_menu": {
+    "code": "'__!fields.['TOWARDS'][0]!__'",
+    "indents": [
+      0
+    ]
+  },
+  "motion_changexby": {
+    "code": "self.change_x(__!inputs.['DX'][1]!__)  # change x by __!inputs.['DX'][1]!__.\n",
+    "indents": [
+      0,
+      0
+    ]
+  },
+  "motion_setx": {
+    "code": "self.set_x(__!inputs.['X'][1]!__)  # set x to __!inputs.['X'][1]!__.\n",
+    "indents": [
+      0,
+      0
+    ]
+  },
+  "motion_changeyby": {
+    "code": "self.change_y(__!inputs.['DY'][1]!__)  # change y by __!inputs.['DY'][1]!__.\n",
+    "indents": [
+      0,
+      0
+    ]
+  },
+  "motion_sety": {
+    "code": "self.set_y(__!inputs.['Y'][1]!__)  # set y to __!inputs.['Y'][1]!__.\n",
+    "indents": [
+      0,
+      0
+    ]
+  },
+  "motion_ifonedgebounce": {
+    "code": "if self.on_edge():\n    self.bounce()  # bounce if on edge.\n",
+    "indents": [
+      0,
+      0
+    ]
+  },
+  "motion_setrotationstyle": {
+    "code": "self.restrict('rotation', '__!fields.['STYLE'][0]!__')  # set rotation style to __!fields.['STYLE'][0]!__.\n",
     "indents": [
       0,
       0

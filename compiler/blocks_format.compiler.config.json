@@ -88,7 +88,7 @@
     ]
   },
   "motion_turnleft": {
-    "code": "self.turn(-1 * __!inputs.['DEGREES'][1]!__)  # turn left __!inputs.['DEGREES'][1]!__ degrees.\n",
+    "code": "self.turn(-__!inputs.['DEGREES'][1]!__)  # turn left __!inputs.['DEGREES'][1]!__ degrees.\n",
     "indents": [
       0,
       0
@@ -154,28 +154,28 @@
     ]
   },
   "motion_changexby": {
-    "code": "self.change_x(__!inputs.['DX'][1]!__)  # change x by __!inputs.['DX'][1]!__.\n",
+    "code": "self.go_to(self.x + __!inputs.['DX'][1]!__, self.y)  # change x by __!inputs.['DX'][1]!__.\n",
     "indents": [
       0,
       0
     ]
   },
   "motion_setx": {
-    "code": "self.set_x(__!inputs.['X'][1]!__)  # set x to __!inputs.['X'][1]!__.\n",
+    "code": "self.go_to(__!inputs.['X'][1]!__, self.y)  # set x to __!inputs.['X'][1]!__.\n",
     "indents": [
       0,
       0
     ]
   },
   "motion_changeyby": {
-    "code": "self.change_y(__!inputs.['DY'][1]!__)  # change y by __!inputs.['DY'][1]!__.\n",
+    "code": "self.go_to(self.x, self.y + __!inputs.['DY'][1]!__)  # change y by __!inputs.['DY'][1]!__.\n",
     "indents": [
       0,
       0
     ]
   },
   "motion_sety": {
-    "code": "self.set_y(__!inputs.['Y'][1]!__)  # set y to __!inputs.['Y'][1]!__.\n",
+    "code": "self.go_to(self.x, __!inputs.['Y'][1]!__)  # set y to __!inputs.['Y'][1]!__.\n",
     "indents": [
       0,
       0
@@ -228,13 +228,13 @@
     ]
   },
   "looks_switchcostumeto": {
-    "code": "self.set_costume(self.costumes.find(__!inputs.['COSTUME'][1]!__))  # switch costume.\n",
+    "code": "self.set_costume(__!inputs.['COSTUME'][1]!__)  # switch costume.\n",
     "indents": [
       0
     ]
   },
   "looks_costume": {
-    "code": "self.costumes['__!fields.['COSTUME'][0]!__']",
+    "code": "'__!fields.['COSTUME'][0]!__'",
     "indents": [
       0
     ]
@@ -244,20 +244,20 @@
     "indents": []
   },
   "looks_switchbackdropto": {
-    "code": "self.set_backdrop(self.backdrops.find(__!inputs.['BACKDROP'][1]!__))  # switch backdrop.\n",
+    "code": "game.set_backdrop(__!inputs.['BACKDROP'][1]!__)  # switch backdrop.\n",
     "indents": [
       0,
       0
     ]
   },
   "looks_backdrops": {
-    "code": "self.backdrops['__!fields.['BACKDROP'][0]!__']",
+    "code": "'__!fields.['BACKDROP'][0]!__'",
     "indents": [
       0
     ]
   },
   "looks_nextbackdrop": {
-    "code": "self.next_backdrop()  # next backdrop.\n",
+    "code": "game.next_backdrop()  # next backdrop.\n",
     "indents": []
   },
   "looks_changesizeby": {
@@ -275,9 +275,8 @@
     ]
   },
   "looks_changeeffectby": {
-    "code": "self.set_effect('__!fields.['EFFECT'][0]!__', effects['__!fields.['EFFECT'][0]!__'] + __!inputs.['CHANGE'][1]!__)  # change __!fields.['EFFECT'][0]!__ effect by __!inputs.['CHANGE'][1]!__.\n",
+    "code": "self.effects['__!fields.['EFFECT'][0]!__'] += __!inputs.['CHANGE'][1]!__  # change __!fields.['EFFECT'][0]!__ effect by __!inputs.['CHANGE'][1]!__.\nself.affect()\n",
     "indents": [
-      0,
       0,
       0,
       0,
@@ -285,7 +284,7 @@
     ]
   },
   "looks_seteffectto": {
-    "code": "self.set_effect('__!fields.['EFFECT'][0]!__', __!inputs.['VALUE'][1]!__)  # set __!fields.['EFFECT'][0]!__ effect to __!inputs.['VALUE'][1]!__.\n",
+    "code": "self.effects['__!fields.['EFFECT'][0]!__'] = __!inputs.['VALUE'][1]!__  # set __!fields.['EFFECT'][0]!__ effect to __!inputs.['VALUE'][1]!__.\nself.affect()\n",
     "indents": [
       0,
       0,
@@ -294,7 +293,7 @@
     ]
   },
   "looks_cleargraphiceffects": {
-    "code": "self.clear_effects()  # clear graphic effects.\n",
+    "code": "self.clear_effects('looks')  # clear graphic effects.\n",
     "indents": []
   },
   "looks_show": {
@@ -306,17 +305,77 @@
     "indents": []
   },
   "looks_gotofrontback": {
-    "code": "self.set_layer('__!fields.['FRONT_BACK'][0]!__')  # go to __!fields.['FRONT_BACK'][0]!__ layer.\n",
+    "code": "game.set_layer(self, '__!fields.['FRONT_BACK'][0]!__')  # go to __!fields.['FRONT_BACK'][0]!__ layer.\n",
     "indents": [
       0,
       0
     ]
   },
   "looks_goforwardbackwardlayers": {
-    "code": "self.set_layer(self.layer + __!inputs.['NUM'][1]!__)  # go __!fields.['FORWARD_BACKWARD'][0]!__ __!inputs.['NUM'][1]!__ layers.\n",
+    "code": "game.set_layer(self, self.layer + __!inputs.['NUM'][1]!__)  # go __!fields.['FORWARD_BACKWARD'][0]!__ __!inputs.['NUM'][1]!__ layers.\n",
     "indents": [
       0,
       0,
+      0,
+      0
+    ]
+  },
+  "sound_playuntildone": {
+    "code": "self.play_sound(__!inputs.['SOUND_MENU'][1]!__, wait=True)  # play sound __!inputs.['SOUND_MENU'][1]!__ until done.\n",
+    "indents": [
+      0,
+      0
+    ]
+  },
+  "sound_sounds_menu": {
+    "code": "'__!fields.['SOUND_MENU'][0]!__'",
+    "indents": [
+      0
+    ]
+  },
+  "sound_play": {
+    "code": "self.play_sound(__!inputs.['SOUND_MENU'][1]!__)  # play sound __!inputs.['SOUND_MENU'][1]!__.\n",
+    "indents": [
+      0,
+      0
+    ]
+  },
+  "sound_stopallsounds": {
+    "code": "game.stop_all_sounds()  # stop all sounds.\n",
+    "indents": []
+  },
+  "sound_changeeffectby": {
+    "code": "self.effects['__!fields.['EFFECT'][0]!__'] += __!inputs.['VALUE'][1]!__  # change __!fields.['EFFECT'][0]!__ effect by __!inputs.['VALUE'][1]!__.\nself.affect()\n",
+    "indents": [
+      0,
+      0,
+      0,
+      0
+    ]
+  },
+  "sound_seteffectto": {
+    "code": "self.effects['__!fields.['EFFECT'][0]!__'] = __!inputs.['VALUE'][1]!__  # set __!fields.['EFFECT'][0]!__ effect to __!inputs.['VALUE'][1]!__.\nself.affect()\n",
+    "indents": [
+      0,
+      0,
+      0,
+      0
+    ]
+  },
+  "sound_cleareffects": {
+    "code": "self.clear_effects('sound')  # clear sound effects.\n",
+    "indents": []
+  },
+  "sound_changevolumeby": {
+    "code": "self.volume += __!inputs.['VOLUME'][1]!__  # change volume by __!inputs.['VOLUME'][1]!__.\n",
+    "indents": [
+      0,
+      0
+    ]
+  },
+  "sound_setvolumeto": {
+    "code": "self.volume = __!inputs.['VOLUME'][1]!__  # set volume to __!inputs.['VOLUME'][1]!__.\n",
+    "indents": [
       0,
       0
     ]

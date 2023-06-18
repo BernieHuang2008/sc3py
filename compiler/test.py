@@ -105,7 +105,7 @@ def parse_sprite(sprite):
 
     # generate code
     class_code_head = "class Generate_{}(scgame.Sprite):\n".format(sprite['name'].replace(' ', '_'))
-    class_code = ""
+    class_code = "    def __init__(self):\n    super().__init__()\n\n"
     active_condition_count = {}  # The dict contains the count of each active condition.
     for hb in head_blocks:  # hb for 'head_block'.
         active_condition = hb['opcode']
@@ -136,5 +136,7 @@ def get_all_sprites():
 if __name__ == '__main__':
     # write import
     res_file.write("import threading\nimport scgame\n\n")
+    print(get_all_sprites())
     parse_sprite(sprites['motion'])
     parse_sprite(sprites['looks'])
+    parse_sprite(sprites['sound'])

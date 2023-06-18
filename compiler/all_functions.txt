@@ -10,4 +10,16 @@ Sprite.on_edge()            # if on edge
 Sprite.bounce()             # bounce
 Sprite.restrict()           # add a restriction to Sprite
 
-
+Sprite.say()                # say ___ [for ___ seconds]
+Sprite.think()              # think ___ [for ___ seconds]
+Sprite.set_costume()        # set costume to #___ (by index)
+Sprite.next_costume()       # next costume
+Sprite.set_backdrop()       # set backdrop to #___ (by index)
+Sprite.next_backdrop()      # next backdrop
+Sprite.resize()             # set Sprite size to ___%
+Sprite.set_effect()         # set effect ___ to ___
+Sprite.effects[]            # effects
+Sprite.clear_effects()      # clear effects
+Sprite.show()               # show Sprite
+Sprite.hide()               # hide Sprite
+Sprite.set_layer()          # set layer to ___

@@ -39,15 +39,6 @@
       4
     ]
   },
-  "looks_thinkforsecs": {
-    "code": "self.think_bubble(__!inputs.['MESSAGE'][1]!__, secs=__!inputs.['SECS'][1]!__)  # think __!inputs.['MESSAGE'][1]!__ for __!inputs.['SECS'][1]!__s.\n",
-    "indents": [
-      0,
-      0,
-      0,
-      0
-    ]
-  },
   "operator_equals": {
     "code": "__!inputs.['OPERAND1'][1]!__ == __!inputs.['OPERAND2'][1]!__",
     "indents": [
@@ -200,6 +191,132 @@
   "motion_setrotationstyle": {
     "code": "self.restrict('rotation', '__!fields.['STYLE'][0]!__')  # set rotation style to __!fields.['STYLE'][0]!__.\n",
     "indents": [
+      0,
+      0
+    ]
+  },
+  "looks_say": {
+    "code": "self.say(__!inputs.['MESSAGE'][1]!__)  # say __!inputs.['MESSAGE'][1]!__.\n",
+    "indents": [
+      0,
+      0
+    ]
+  },
+  "looks_sayforsecs": {
+    "code": "self.say(__!inputs.['MESSAGE'][1]!__, secs=__!inputs.['SECS'][1]!__)  # say __!inputs.['MESSAGE'][1]!__ for __!inputs.['SECS'][1]!__s.\n",
+    "indents": [
+      0,
+      0,
+      0,
+      0
+    ]
+  },
+  "looks_think": {
+    "code": "self.think(__!inputs.['MESSAGE'][1]!__)  # think __!inputs.['MESSAGE'][1]!__.\n",
+    "indents": [
+      0,
+      0
+    ]
+  },
+  "looks_thinkforsecs": {
+    "code": "self.think(__!inputs.['MESSAGE'][1]!__, secs=__!inputs.['SECS'][1]!__)  # think __!inputs.['MESSAGE'][1]!__ for __!inputs.['SECS'][1]!__s.\n",
+    "indents": [
+      0,
+      0,
+      0,
+      0
+    ]
+  },
+  "looks_switchcostumeto": {
+    "code": "self.set_costume(self.costumes.find(__!inputs.['COSTUME'][1]!__))  # switch costume.\n",
+    "indents": [
+      0
+    ]
+  },
+  "looks_costume": {
+    "code": "self.costumes['__!fields.['COSTUME'][0]!__']",
+    "indents": [
+      0
+    ]
+  },
+  "looks_nextcostume": {
+    "code": "self.next_costume()  # next costume.\n",
+    "indents": []
+  },
+  "looks_switchbackdropto": {
+    "code": "self.set_backdrop(self.backdrops.find(__!inputs.['BACKDROP'][1]!__))  # switch backdrop.\n",
+    "indents": [
+      0,
+      0
+    ]
+  },
+  "looks_backdrops": {
+    "code": "self.backdrops['__!fields.['BACKDROP'][0]!__']",
+    "indents": [
+      0
+    ]
+  },
+  "looks_nextbackdrop": {
+    "code": "self.next_backdrop()  # next backdrop.\n",
+    "indents": []
+  },
+  "looks_changesizeby": {
+    "code": "self.resize(self.size + __!inputs.['CHANGE'][1]!__)  # change size by __!inputs.['CHANGE'][1]!__%.\n",
+    "indents": [
+      0,
+      0
+    ]
+  },
+  "looks_setsizeto": {
+    "code": "self.resize(__!inputs.['SIZE'][1]!__)  # set size to __!inputs.['SIZE'][1]!__%.\n",
+    "indents": [
+      0,
+      0
+    ]
+  },
+  "looks_changeeffectby": {
+    "code": "self.set_effect('__!fields.['EFFECT'][0]!__', effects['__!fields.['EFFECT'][0]!__'] + __!inputs.['CHANGE'][1]!__)  # change __!fields.['EFFECT'][0]!__ effect by __!inputs.['CHANGE'][1]!__.\n",
+    "indents": [
+      0,
+      0,
+      0,
+      0,
+      0
+    ]
+  },
+  "looks_seteffectto": {
+    "code": "self.set_effect('__!fields.['EFFECT'][0]!__', __!inputs.['VALUE'][1]!__)  # set __!fields.['EFFECT'][0]!__ effect to __!inputs.['VALUE'][1]!__.\n",
+    "indents": [
+      0,
+      0,
+      0,
+      0
+    ]
+  },
+  "looks_cleargraphiceffects": {
+    "code": "self.clear_effects()  # clear graphic effects.\n",
+    "indents": []
+  },
+  "looks_show": {
+    "code": "self.show()  # show.\n",
+    "indents": []
+  },
+  "looks_hide": {
+    "code": "self.hide()  # hide.\n",
+    "indents": []
+  },
+  "looks_gotofrontback": {
+    "code": "self.set_layer('__!fields.['FRONT_BACK'][0]!__')  # go to __!fields.['FRONT_BACK'][0]!__ layer.\n",
+    "indents": [
+      0,
+      0
+    ]
+  },
+  "looks_goforwardbackwardlayers": {
+    "code": "self.set_layer(self.layer + __!inputs.['NUM'][1]!__)  # go __!fields.['FORWARD_BACKWARD'][0]!__ __!inputs.['NUM'][1]!__ layers.\n",
+    "indents": [
+      0,
+      0,
       0,
       0
     ]

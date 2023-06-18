@@ -1,4 +1,6 @@
 import threading
+import scgame
+
 
 class Generate_motion(scgame.Sprite):
 
@@ -20,5 +22,30 @@ class Generate_motion(scgame.Sprite):
             self.bounce()  # bounce if on edge.
         self.restrict('rotation', 'left-right')  # set rotation style to left-right.
 
+    def event_whenflagclicked(self):
+        threading.Thread(target=self.event_whenflagclicked_1)
+
+
+class Generate_looks(scgame.Sprite):
+
+    def event_whenflagclicked_1(self):
+        self.say('Hello!', secs=2)  # say 'Hello!' for 2s.
+        self.say('Hello!')  # say 'Hello!'.
+        self.think('Hmm...', secs=2)  # think 'Hmm...' for 2s.
+        self.think('Hmm...')  # think 'Hmm...'.
+        self.set_costume(self.costumes.find(self.costumes['造型2']))  # switch costume.
+        self.next_costume()  # next costume.
+        self.set_backdrop(self.backdrops.find(self.backdrops['背景1']))  # switch backdrop.
+        self.next_backdrop()  # next backdrop.
+        self.resize(self.size + 10)  # change size by 10%.
+        self.resize(100)  # set size to 100%.
+        self.set_effect('COLOR', effects['COLOR'] + 25)  # change COLOR effect by 25.
+        self.set_effect('COLOR', 0)  # set COLOR effect to 0.
+        self.clear_effects()  # clear graphic effects.
+        self.show()  # show.
+        self.hide()  # hide.
+        self.set_layer('front')  # go to front layer.
+        self.set_layer(self.layer + 1)  # go forward 1 layers.
+    
     def event_whenflagclicked(self):
         threading.Thread(target=self.event_whenflagclicked_1)

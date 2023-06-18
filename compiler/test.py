@@ -126,10 +126,15 @@ def parse_sprite(sprite):
              range(active_condition_count[condition])]))
 
     # write to file
-    res_file.write(class_code_head + class_code.replace('\n', '\n    '))
+    res_file.write('\n' + class_code_head + class_code.replace('\n', '\n    '))
+
+
+def get_all_sprites():
+    return list(sprites.keys())
 
 
 if __name__ == '__main__':
     # write import
     res_file.write("import threading\nimport scgame\n\n")
     parse_sprite(sprites['motion'])
+    parse_sprite(sprites['looks'])

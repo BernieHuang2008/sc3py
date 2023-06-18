@@ -5,7 +5,16 @@ It's the document of scgame.
 
 class Sprite:
     def __init__(self):
-        pass
+        self.x = 0
+        self.y = 0
+        self.size = 100
+        self.direction = 90
+        self.volume = 100
+        self.layer = game.get_layer(self)
+        self.effects = {
+            'COLOR': 0,
+            'PITCH': 100
+        }
 
     def __str__(self):
         return self.__class__.__name__
@@ -27,14 +36,20 @@ class Sprite:
         """
         pass
 
-    def go_to(self, x, y, secs=0):
+    def go_to(self, *args, secs=0):
         """
-        Go to.
-        :param x: x coordinate
-        :param y: y coordinate
-        :param secs: time to glide
+        Go to somewhere.
+        :param secs: time to glide, default 0s.
         :return: None
         """
+        if len(args) == 2:
+            # go to (x, y)
+            x, y = args
+            pass
+        elif len(args) == 1:
+            # go somewhere
+            target = args[0]
+            pass
         pass
 
     def point_towards(self, target):
@@ -120,7 +135,7 @@ class Sprite:
     def clear_effects(self, *effects):
         """
         Clear effects of this sprite.
-        :param effects: effects to be clear
+        :param effects: effect names to be clear
         :return: None
         """
         pass
@@ -135,6 +150,16 @@ class Sprite:
     def hide(self):
         """
         Hide this sprite.
+        :return: None
+        """
+        pass
+
+    # PART3: sound
+    def play_sound(self, sound, wait=False):
+        """
+        Play sound.
+        :param sound: sound name
+        :param wait: whether to wait until done
         :return: None
         """
         pass

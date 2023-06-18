@@ -46,7 +46,7 @@ def parse_sprite(sprite):
                 12: lambda x: "game.var('{}', '{}')".format(x[0], x[1]),  # Variable
                 13: lambda x: "game.list('{}', '{}')".format(x[0], x[1]),  # List
             }[block_id[0]](block_id[1:])  # just like 'switch'.
-        else:
+        elif block_id in blocks:
             # get the block dict and some info.
             block = blocks[block_id]
             opcode = block['opcode']
@@ -90,25 +90,30 @@ def parse_sprite(sprite):
                 # else, parse the next block and return the code.
                 code += parse_each_block(block['next'])
                 return code.strip()
+        else:
+            return 'pass'
 
     # get all blocks
     blocks = sprite['blocks']
-    head_blocks = []  # Blocks which are the first block of the script.
+    hat_blocks = []  # Blocks which are the first block of the script.
 
-    # get head_blocks
+    # get hat blocks
     for b_id in blocks:  # b_id for 'block_id'.
         block = blocks[b_id]
-        # check if it is a head block.
+        # check if it is a hat block.
         if 'when' in block['opcode'] or 'define' in block['opcode']:
-            # it's a "head_block".
-            head_blocks.append(block)
+            # it's a "hat block".
+            hat_blocks.append(block)
 
     # generate code
     class_code_head = "class Generate_{}(scgame.Sprite):\n".format(sprite['name'].replace(' ', '_'))
     class_code = "    def __init__(self):\n    super().__init__()\n\n"
     active_condition_count = {}  # The dict contains the count of each active condition.
-    for hb in head_blocks:  # hb for 'head_block'.
+    for hb in hat_blocks:  # hb for 'hat block'.
         active_condition = hb['opcode']
+        if hb['opcode'] == 'event_whenbroadcastreceived':
+            active_condition += '_' + hb['fields']['BROADCAST_OPTION'][0]
+
         active_condition_count[active_condition] = active_condition_count.get(active_condition, 0) + 1
         # parse the second block
         _next = hb['next']
@@ -121,9 +126,10 @@ def parse_sprite(sprite):
 
     # generate event func.
     for condition in active_condition_count:
-        class_code += '\n\ndef {}(self):\n    {}\n\n\n'.format(condition, '\n    '.join(
+        class_code += '\n\ndef {}(self):\n    threads = [\n        {}\n    ]\n'.format(condition, ',\n    '.join(
             ["threading.Thread(target=self.{}_{})".format(condition, i + 1) for i in
              range(active_condition_count[condition])]))
+        class_code += '\n    all(t.start() for t in threads)\n    return threads'
 
     # write to file
     res_file.write('\n' + class_code_head + class_code.replace('\n', '\n    '))
@@ -140,3 +146,4 @@ if __name__ == '__main__':
     parse_sprite(sprites['motion'])
     parse_sprite(sprites['looks'])
     parse_sprite(sprites['sound'])
+    parse_sprite(sprites['events'])

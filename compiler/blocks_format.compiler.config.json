@@ -379,5 +379,19 @@
       0,
       0
     ]
+  },
+  "event_broadcast": {
+    "code": "game.broadcast('__!inputs.['BROADCAST_INPUT'][1]!__')  # broadcast __!inputs.['BROADCAST_INPUT'][1]!__.\n",
+    "indents": [
+      0,
+      0
+    ]
+  },
+  "event_broadcastandwait": {
+    "code": "game.broadcast('__!inputs.['BROADCAST_INPUT'][1]!__', wait=True)  # broadcast __!inputs.['BROADCAST_INPUT'][1]!__ and wait.\n",
+    "indents": [
+      0,
+      0
+    ]
   }
 }

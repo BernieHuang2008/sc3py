@@ -25,9 +25,12 @@ class Generate_motion(scgame.Sprite):
         self.restrict('rotation', 'left-right')  # set rotation style to left-right.
 
     def event_whenflagclicked(self):
-        threading.Thread(target=self.event_whenflagclicked_1)
+        threads = [
+            threading.Thread(target=self.event_whenflagclicked_1)
+        ]
 
-
+        all(t.start() for t in threads)
+        return threads
 class Generate_looks(scgame.Sprite):
     def __init__(self):
         super().__init__()
@@ -54,9 +57,12 @@ class Generate_looks(scgame.Sprite):
         game.set_layer(self, self.layer + 1)  # go forward 1 layers.
 
     def event_whenflagclicked(self):
-        threading.Thread(target=self.event_whenflagclicked_1)
+        threads = [
+            threading.Thread(target=self.event_whenflagclicked_1)
+        ]
 
-
+        all(t.start() for t in threads)
+        return threads
 class Generate_sound(scgame.Sprite):
     def __init__(self):
         super().__init__()
@@ -72,6 +78,82 @@ class Generate_sound(scgame.Sprite):
         self.clear_effects('sound')  # clear sound effects.
         self.volume += -10  # change volume by -10.
         self.volume = 100  # set volume to 100.
-    
+
     def event_whenflagclicked(self):
-        threading.Thread(target=self.event_whenflagclicked_1)
+        threads = [
+            threading.Thread(target=self.event_whenflagclicked_1)
+        ]
+
+        all(t.start() for t in threads)
+        return threads
+
+
+class Generate_events(scgame.Sprite):
+    def __init__(self):
+        super().__init__()
+
+    def event_whenflagclicked_1(self):
+        game.broadcast('game.broadcast(message1)')  # broadcast game.broadcast(message1).
+
+    def event_whenkeypressed_1(self):
+        game.broadcast('game.broadcast(message1)', wait=True)  # broadcast game.broadcast(message1) and wait.
+
+    def event_whenthisspriteclicked_1(self):
+        pass
+
+    def event_whenbackdropswitchesto_1(self):
+        pass
+
+    def event_whengreaterthan_1(self):
+        pass
+
+    def event_whenbroadcastreceived_message1_1(self):
+        pass
+
+    def event_whenflagclicked(self):
+        threads = [
+            threading.Thread(target=self.event_whenflagclicked_1)
+        ]
+
+        all(t.start() for t in threads)
+        return threads
+
+    def event_whenkeypressed(self):
+        threads = [
+            threading.Thread(target=self.event_whenkeypressed_1)
+        ]
+
+        all(t.start() for t in threads)
+        return threads
+
+    def event_whenthisspriteclicked(self):
+        threads = [
+            threading.Thread(target=self.event_whenthisspriteclicked_1)
+        ]
+
+        all(t.start() for t in threads)
+        return threads
+
+    def event_whenbackdropswitchesto(self):
+        threads = [
+            threading.Thread(target=self.event_whenbackdropswitchesto_1)
+        ]
+
+        all(t.start() for t in threads)
+        return threads
+
+    def event_whengreaterthan(self):
+        threads = [
+            threading.Thread(target=self.event_whengreaterthan_1)
+        ]
+
+        all(t.start() for t in threads)
+        return threads
+
+    def event_whenbroadcastreceived_message1(self):
+        threads = [
+            threading.Thread(target=self.event_whenbroadcastreceived_message1_1)
+        ]
+
+        all(t.start() for t in threads)
+        return threads

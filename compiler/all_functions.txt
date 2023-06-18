@@ -14,7 +14,7 @@ Sprite.restrict()           # add a restriction to Sprite
 
 Sprite.say()                # say ___ [for ___ seconds]
 Sprite.think()              # think ___ [for ___ seconds]
-Sprite.set_costume()        # set costume to #___ (by name)
+Sprite.set_costume()        # set costume to ___ (by name)
 Sprite.next_costume()       # next costume
 Sprite.resize()             # resize to ___%
 Sprite.affect()             # apply all effects in Sprite.effects

@@ -182,7 +182,7 @@
     ]
   },
   "motion_ifonedgebounce": {
-    "code": "if self.on_edge():\n    self.bounce()  # bounce if on edge.\n",
+    "code": "if self.on_edge():\n    self.bounce(self.on_edge())  # bounce if on edge.\n",
     "indents": [
       0,
       0

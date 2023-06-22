@@ -35,7 +35,12 @@ class Sprite:
         return self.__class__.__name__
 
     def draw(self):  # TODO: function draw
-        pass
+        """
+        Draw the sprite from all the configurations and static.
+        :return: None
+        """
+        ...
+        time.sleep(1 / game.fps)
 
     # PART1: motion
     def move_forward(self, distance):
@@ -83,7 +88,6 @@ class Sprite:
                 self.x += delta_x / frame_num
                 self.y += delta_y / frame_num
                 self.draw()
-                time.sleep(1 / game.fps)
         else:
             self.x, self.y = target
             self.draw()

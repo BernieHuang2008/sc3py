@@ -393,5 +393,18 @@
       0,
       0
     ]
+  },
+  "control_wait": {
+    "code": "self.wait(__!inputs.['DURATION'][1]!__)  # wait __!inputs.['DURATION'][1]!__ seconds.\n",
+    "indents": [
+      0,
+      0
+    ]
+  },
+  "control_wait_until": {
+    "code": "while not __!inputs.['CONDITION'][1]!__:\n    self.wait()\n",
+    "indents": [
+      0
+    ]
   }
 }

@@ -2,10 +2,10 @@ import json
 
 # global variables
 sprites = {}  # {sprite_name: sprite} The dict contains all the Sprites in this program.
-res_file = open('result/main.py', 'w')  # Compiled Python code will be written to this file.
+res_file = open('result/main.py', 'w', encoding='utf-8')  # Compiled Python code will be written to this file.
 
 # open Scratch Code File
-with open("project_allblocks.json") as f:
+with open("project_allblocks.json", encoding='utf-8') as f:
     j = json.load(f)
     # Get all Sprites in this program, and store them in 'sprites'.
     for sprite in j['targets']:
@@ -13,8 +13,21 @@ with open("project_allblocks.json") as f:
         sprites[name] = sprite
 
 # load format file (which is used to turn Scratch into Py Code)
-with open("blocks_format.compiler.config.json") as f:
+with open("sc_code_format.compiler.json") as f:
     FORMAT = json.load(f)  # Load to 'FORMAT'
+
+
+def acceptable(e, v_type, v_path, block_id):  # check if the error during parsing is accpectable.
+    error_code = '//'.join([str(e), v_type, v_path])
+    if error_code in [
+        "'SUBSTACK2'//inputs//['SUBSTACK2'][1]"
+    ]:
+        return '[√]'
+    else:
+        print('=' * 10, "UNACCEPTABLE ERROR", '=' * 10)
+        print(f"at block '{block_id}'")
+        print(f"format path: {v_type}.{v_path}")
+        raise e
 
 
 def parse_sprite(sprite):
@@ -24,7 +37,7 @@ def parse_sprite(sprite):
     :return: None. The result will be written to 'res_file' directly.
     """
 
-    def parse_each_block(block_id):
+    def parse_each_block(block_id, inline=False):
         """
         Parse each block.
         :param block_id: the id of specified block (str) | a value (list)
@@ -70,18 +83,24 @@ def parse_sprite(sprite):
                 indent = ' ' * _format['indents'][i]  # indent
 
                 # fill the blank
+                try:
+                    blank_value = eval(f"block['{v_type}']{v_path}")
+                except KeyError as e:
+                    print(f"[*] KeyError: {e}", acceptable(e, v_type, v_path, block_id))
+                    blank_value = 'None'
+                inline = (code[code.find('__!' + v_str + '!__') - 2] != ' ')  # check if the blank is in a line.
+
                 if v_type == 'fields':
                     # find the target from 'fields/v_path' and fill the blank
                     code = code.replace('__!' + v_str + '!__',  # find blank
-                                        eval("block['fields']" + v_path).replace('\n', '\n' + indent),  # add indent
+                                        blank_value.replace('\n', '\n' + indent),  # add indent
                                         1)  # replace only one times.
                 elif v_type == 'inputs':
                     # find the target from 'inputs/v_path' and fill the blank
                     code = code.replace('__!' + v_str + '!__',
-                                        parse_each_block(eval("block['inputs']" + v_path)).replace('\n', '\n' + indent),
-                                        1)
+                                        parse_each_block(blank_value, inline=inline).replace('\n', '\n' + indent), 1)
                 else:
-                    pass
+                    raise KeyError(f"Unknown type '{v_type}'.")
 
             if block['next'] is None:
                 # if the block is the last block, just return the code.
@@ -91,7 +110,10 @@ def parse_sprite(sprite):
                 code += parse_each_block(block['next'])
                 return code.strip()
         else:
-            return 'pass'
+            if inline:
+                return 'None'
+            else:
+                return '...  # TODO: Please complete the code here.'
 
     # get all blocks
     blocks = sprite['blocks']
@@ -109,15 +131,19 @@ def parse_sprite(sprite):
     class_code_head = "class Generate_{}(scgame.Sprite):\n".format(sprite['name'].replace(' ', '_'))
     class_code = "    def __init__(self):\n    super().__init__()\n\n"
     active_condition_count = {}  # The dict contains the count of each active condition.
+
+    # parse the first block as the entrance.
     for hb in hat_blocks:  # hb for 'hat block'.
         active_condition = hb['opcode']
         if hb['opcode'] == 'event_whenbroadcastreceived':
             active_condition += '_' + hb['fields']['BROADCAST_OPTION'][0]
 
         active_condition_count[active_condition] = active_condition_count.get(active_condition, 0) + 1
+
         # parse the second block
         _next = hb['next']
         code = parse_each_block(_next)
+
         # generate code
         class_code += '\ndef {}_{}(self):\n    {}'.format(active_condition,
                                                           active_condition_count[active_condition],
@@ -147,3 +173,7 @@ if __name__ == '__main__':
     parse_sprite(sprites['looks'])
     parse_sprite(sprites['sound'])
     parse_sprite(sprites['events'])
+    parse_sprite(sprites['control'])
+    # parse_sprite(sprites['sensing'])
+    # parse_sprite(sprites['operators'])
+    # parse_sprite(sprites['variables'])

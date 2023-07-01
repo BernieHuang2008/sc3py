@@ -217,3 +217,8 @@ class Sprite:
         :return: None
         """
         pass
+
+    def wait(self, timeout=None):
+        if timeout is None:
+            timeout = 1 / game.fps
+        time.sleep(timeout)

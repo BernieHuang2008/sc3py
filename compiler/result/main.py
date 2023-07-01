@@ -21,7 +21,7 @@ class Generate_motion(scgame.Sprite):
         self.go_to(self.x, self.y + 10)  # change y by 10.
         self.go_to(self.x, 0)  # set y to 0.
         if self.on_edge():
-            self.bounce()  # bounce if on edge.
+            self.bounce(self.on_edge())  # bounce if on edge.
         self.restrict('rotation', 'left-right')  # set rotation style to left-right.
 
     def event_whenflagclicked(self):
@@ -86,8 +86,6 @@ class Generate_sound(scgame.Sprite):
 
         all(t.start() for t in threads)
         return threads
-
-
 class Generate_events(scgame.Sprite):
     def __init__(self):
         super().__init__()
@@ -99,16 +97,16 @@ class Generate_events(scgame.Sprite):
         game.broadcast('game.broadcast(message1)', wait=True)  # broadcast game.broadcast(message1) and wait.
 
     def event_whenthisspriteclicked_1(self):
-        pass
+        ...  # TODO: Please complete the code here.
 
     def event_whenbackdropswitchesto_1(self):
-        pass
+        ...  # TODO: Please complete the code here.
 
     def event_whengreaterthan_1(self):
-        pass
+        ...  # TODO: Please complete the code here.
 
     def event_whenbroadcastreceived_message1_1(self):
-        pass
+        ...  # TODO: Please complete the code here.
 
     def event_whenflagclicked(self):
         threads = [
@@ -157,3 +155,33 @@ class Generate_events(scgame.Sprite):
 
         all(t.start() for t in threads)
         return threads
+
+
+class Generate_control(scgame.Sprite):
+    def __init__(self):
+        super().__init__()
+
+    def event_whenflagclicked_1(self):
+        self.wait(1)  # wait 1 seconds.
+        while True:  # infinity loop.
+            for _ in range(10):  # repeat 10 times.
+                if None:
+                    if None:
+                        while not None:
+                            self.wait()
+                    else:
+                        ...  # TODO: Please complete the code here.
+            game.stop('all')  # stop all.
+
+    def event_whenflagclicked(self):
+        threads = [
+            threading.Thread(target=self.event_whenflagclicked_1)
+        ]
+
+        all(t.start() for t in threads)
+        return threads
+
+
+class Generate_variables(scgame.Sprite):
+    def __init__(self):
+        super().__init__()

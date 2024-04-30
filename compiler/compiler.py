@@ -1,5 +1,10 @@
 import json
 
+# settings
+SETTINGS = {
+    "comment": False,
+}
+
 # global variables
 sprites = {}  # {sprite_name: sprite} The dict contains all the Sprites in this program.
 res_file = open(
@@ -46,37 +51,24 @@ def parse_sprite(sprite):
         :return: the parsed code (or value) as str.
         """
 
-        # if the block is a value, parse it.
-        if isinstance(block_id, list):
-            # https://en.scratch-wiki.info/wiki/Scratch_File_Format
-            return {
-                4: lambda x: x[0],  # Number
-                5: lambda x: x[0],  # Positive Number
-                6: lambda x: x[0],  # Positive Integer
-                7: lambda x: x[0],  # Integer
-                8: lambda x: x[0],  # Angle
-                9: lambda x: "'{}'".format(x[0]),  # Color
-                10: lambda x: "'{}'".format(x[0]),  # String
-                11: lambda x: "game.broadcast({})".format(x[0]),  # Broadcast
-                12: lambda x: "game.var('{}', '{}')".format(x[0], x[1]),  # Variable
-                13: lambda x: "game.list('{}', '{}')".format(x[0], x[1]),  # List
-            }[block_id[0]](
-                block_id[1:]
-            )  # just like 'switch'.
-        elif block_id in blocks:
-            # get the block dict and some info.
-            block = blocks[block_id]
-            opcode = block["opcode"]
+        def fill_blanks(block, code, indents):
+            """
+            Fill the blanks in the code.
 
-            # get format of the specified 'opcode', and init.
-            _format = FORMAT[opcode]
-            code = _format["code"]
+            :param block: the block dict.
+            :param code: the code to fill.
+            :param indents: the indents of each blank.
+            :return: the filled code.
+
+            :param block_id (hidden): the id of the block, just for exception catch use.
+            :param parse_each_block (hidden): recursive function.
+            """
 
             # get the number of blanks in format.
             var_counts = code.count("__!")
 
             # fill the blanks one by one.
-            # Blanks is started by '__!' and ended by '!__'.
+            # Blanks starts by '__!' and ended by '!__'.
             for i in range(var_counts):
                 # get info
                 v_index = code.find("__!")  # index
@@ -84,7 +76,7 @@ def parse_sprite(sprite):
                 v_str = v_str[: v_str.find("!__")]  # string value
                 v_type = v_str.split(".")[0]  # type
                 v_path = ".".join(v_str.split(".")[1:])  # path
-                indent = " " * _format["indents"][i]  # indent
+                indent = " " * indents[i]  # indent
 
                 # fill the blank
                 try:
@@ -114,6 +106,44 @@ def parse_sprite(sprite):
                     )
                 else:
                     raise KeyError(f"Unknown type '{v_type}'.")
+            
+            return code
+
+        # if the block is a instant value/var reference, return its value.
+        if isinstance(block_id, list):
+            # https://en.scratch-wiki.info/wiki/Scratch_File_Format
+            return {
+                4: lambda x: x[0],  # Number
+                5: lambda x: x[0],  # Positive Number
+                6: lambda x: x[0],  # Positive Integer
+                7: lambda x: x[0],  # Integer
+                8: lambda x: x[0],  # Angle
+                9: lambda x: "'{}'".format(x[0]),  # Color
+                10: lambda x: "'{}'".format(x[0]),  # String
+                11: lambda x: "game.broadcast({})".format(x[0]),  # Broadcast
+                12: lambda x: "game.var('{}', '{}')".format(x[0], x[1]),  # Variable
+                13: lambda x: "game.list('{}', '{}')".format(x[0], x[1]),  # List
+            }[block_id[0]](
+                block_id[1:]
+            )   # switch-case
+        elif block_id in blocks:
+            # get the block dict and some info.
+            block = blocks[block_id]
+            opcode = block["opcode"]
+
+            # get format of the specified 'opcode', and init.
+            _format = FORMAT[opcode]
+            code = _format["code"]
+
+            # fill in blanks
+            code = fill_blanks(block, code, _format["indents"])
+                
+            # comment
+            if SETTINGS["comment"] and _format["comment"] is not None:
+                comment = _format["comment"]
+                comment = fill_blanks(block, comment, [0] * comment.count("__!"))
+                clst = code.split("\n", 1)
+                code = clst[0] + "  # " + comment + "\n" + clst[1]
 
             if block["next"] is None:
                 # if the block is the last block, just return the code.
@@ -185,14 +215,10 @@ def parse_sprite(sprite):
     res_file.write("\n" + class_code_head + class_code.replace("\n", "\n    "))
 
 
-def get_all_sprites():
-    return list(sprites.keys())
-
-
 if __name__ == "__main__":
     # write import
-    res_file.write("import threading\nimport scgame\n\n")
-    print(get_all_sprites())
+    res_file.write("import threading\nimport scgame\ngame={}\n\n")  # import + `game={}`(just avoiding errors)
+    print(list(sprites.keys()))
     parse_sprite(sprites["motion"])
     parse_sprite(sprites["looks"])
     parse_sprite(sprites["sound"])

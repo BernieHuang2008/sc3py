@@ -1,6 +1,7 @@
 {
   "control_repeat": {
-    "code": "for _ in range(__!inputs.['TIMES'][1]!__):  # repeat __!inputs.['TIMES'][1]!__ times.\n    __!inputs.['SUBSTACK'][1]!__\n",
+    "code": "for _ in range(__!inputs.['TIMES'][1]!__):\n    __!inputs.['SUBSTACK'][1]!__\n",
+    "comment": "repeat __!inputs.['TIMES'][1]!__ times.",
     "indents": [
       0,
       0,
@@ -8,7 +9,8 @@
     ]
   },
   "motion_glidesecstoxy": {
-    "code": "self.go_to(__!inputs.['X'][1]!__, __!inputs.['Y'][1]!__, secs=__!inputs.['SECS'][1]!__)  # gilde to (__!inputs.['X'][1]!__, __!inputs.['Y'][1]!__) in __!inputs.['SECS'][1]!__s.\n",
+    "code": "self.go_to(__!inputs.['X'][1]!__, __!inputs.['Y'][1]!__, secs=__!inputs.['SECS'][1]!__)\n",
+    "comment": "glide to (__!inputs.['X'][1]!__, __!inputs.['Y'][1]!__) in __!inputs.['SECS'][1]!__s.",
     "indents": [
       0,
       0,
@@ -19,13 +21,15 @@
     ]
   },
   "control_forever": {
-    "code": "while True:  # infinity loop.\n    __!inputs.['SUBSTACK'][1]!__\n",
+    "code": "while True:\n    __!inputs.['SUBSTACK'][1]!__\n",
+    "comment": "loop forever.",
     "indents": [
       4
     ]
   },
   "control_if": {
     "code": "if __!inputs.['CONDITION'][1]!__:\n    __!inputs.['SUBSTACK'][1]!__\n",
+    "comment": null,
     "indents": [
       0,
       4
@@ -33,6 +37,7 @@
   },
   "control_if_else": {
     "code": "if __!inputs.['CONDITION'][1]!__:\n    __!inputs.['SUBSTACK'][1]!__\nelse:\n    __!inputs.['SUBSTACK2'][1]!__\n",
+    "comment": null,
     "indents": [
       0,
       4,
@@ -41,6 +46,7 @@
   },
   "operator_equals": {
     "code": "__!inputs.['OPERAND1'][1]!__ == __!inputs.['OPERAND2'][1]!__",
+    "comment": null,
     "indents": [
       0,
       0
@@ -48,6 +54,7 @@
   },
   "sensing_keypressed": {
     "code": "game.is_keypressed(__!inputs.['KEY_OPTION'][1]!__)",
+    "comment": null,
     "indents": [
       0,
       0
@@ -55,12 +62,14 @@
   },
   "sensing_keyoptions": {
     "code": "'__!fields.['KEY_OPTION'][0]!__'",
+    "comment": null,
     "indents": [
       0
     ]
   },
   "motion_movesteps": {
-    "code": "self.move_forward(__!inputs.['STEPS'][1]!__)  # move forward for __!inputs.['STEPS'][1]!__ steps.\n",
+    "code": "self.move_forward(__!inputs.['STEPS'][1]!__)\n",
+    "comment": "move forward __!inputs.['STEPS'][1]!__ steps.",
     "indents": [
       0,
       0
@@ -68,34 +77,39 @@
   },
   "operator_random": {
     "code": "scgame.random(__!inputs.['FROM'][1]!__, __!inputs.['TO'][1]!__)",
+    "comment": null,
     "indents": [
       0,
       0
     ]
   },
   "control_stop": {
-    "code": "game.stop('__!fields.['STOP_OPTION'][0]!__')  # stop __!fields.['STOP_OPTION'][0]!__.\n",
+    "code": "game.stop('__!fields.['STOP_OPTION'][0]!__')\n",
+    "comment": "stop __!fields.['STOP_OPTION'][0]!__.",
     "indents": [
       0,
       0
     ]
   },
   "motion_turnright": {
-    "code": "self.turn(__!inputs.['DEGREES'][1]!__)  # turn right __!inputs.['DEGREES'][1]!__ degrees.\n",
+    "code": "self.turn(__!inputs.['DEGREES'][1]!__)\n",
+    "comment": "turn right __!inputs.['DEGREES'][1]!__ degrees.",
     "indents": [
       0,
       0
     ]
   },
   "motion_turnleft": {
-    "code": "self.turn(-__!inputs.['DEGREES'][1]!__)  # turn left __!inputs.['DEGREES'][1]!__ degrees.\n",
+    "code": "self.turn(-__!inputs.['DEGREES'][1]!__)\n",
+    "comment": "turn left __!inputs.['DEGREES'][1]!__ degrees.",
     "indents": [
       0,
       0
     ]
   },
   "motion_goto": {
-    "code": "self.go_to(__!inputs.['TO'][1]!__)  # go to __!inputs.['TO'][1]!__.\n",
+    "code": "self.go_to(__!inputs.['TO'][1]!__)\n",
+    "comment": "go to __!inputs.['TO'][1]!__.",
     "indents": [
       0,
       0
@@ -103,12 +117,14 @@
   },
   "motion_goto_menu": {
     "code": "'__!fields.['TO'][0]!__'",
+    "comment": null,
     "indents": [
       0
     ]
   },
   "motion_gotoxy": {
-    "code": "self.go_to(__!inputs.['X'][1]!__, __!inputs.['Y'][1]!__)  # go to (__!inputs.['X'][1]!__, __!inputs.['Y'][1]!__).\n",
+    "code": "self.go_to(__!inputs.['X'][1]!__, __!inputs.['Y'][1]!__)\n",
+    "comment": "go to (__!inputs.['X'][1]!__, __!inputs.['Y'][1]!__).",
     "indents": [
       0,
       0,
@@ -117,7 +133,8 @@
     ]
   },
   "motion_glideto": {
-    "code": "self.go_to(__!inputs.['TO'][1]!__, secs=__!inputs.['SECS'][1]!__)  # glide to __!inputs.['TO'][1]!__ in __!inputs.['SECS'][1]!__s.\n",
+    "code": "self.go_to(__!inputs.['TO'][1]!__, secs=__!inputs.['SECS'][1]!__)\n",
+    "comment": "glide to __!inputs.['TO'][1]!__ in __!inputs.['SECS'][1]!__s.",
     "indents": [
       0,
       0,
@@ -129,19 +146,22 @@
   },
   "motion_glideto_menu": {
     "code": "'__!fields.['TO'][0]!__'",
+    "comment": null,
     "indents": [
       0
     ]
   },
   "motion_pointindirection": {
-    "code": "self.point_towards(__!inputs.['DIRECTION'][1]!__)  # point in direction __!inputs.['DIRECTION'][1]!__.\n",
+    "code": "self.point_towards(__!inputs.['DIRECTION'][1]!__)\n",
+    "comment": "point in direction __!inputs.['DIRECTION'][1]!__.",
     "indents": [
       0,
       0
     ]
   },
   "motion_pointtowards": {
-    "code": "self.point_towards(__!inputs.['TOWARDS'][1]!__)  # point towards __!inputs.['TOWARDS'][1]!__.\n",
+    "code": "self.point_towards(__!inputs.['TOWARDS'][1]!__)\n",
+    "comment": "point towards __!inputs.['TOWARDS'][1]!__.",
     "indents": [
       0,
       0
@@ -149,61 +169,70 @@
   },
   "motion_pointtowards_menu": {
     "code": "'__!fields.['TOWARDS'][0]!__'",
+    "comment": null,
     "indents": [
       0
     ]
   },
   "motion_changexby": {
-    "code": "self.go_to(self.x + __!inputs.['DX'][1]!__, self.y)  # change x by __!inputs.['DX'][1]!__.\n",
+    "code": "self.go_to(self.x + __!inputs.['DX'][1]!__, self.y)\n",
+    "comment": "change x by __!inputs.['DX'][1]!__.",
     "indents": [
       0,
       0
     ]
   },
   "motion_setx": {
-    "code": "self.go_to(__!inputs.['X'][1]!__, self.y)  # set x to __!inputs.['X'][1]!__.\n",
+    "code": "self.go_to(__!inputs.['X'][1]!__, self.y)\n",
+    "comment": "set x to __!inputs.['X'][1]!__.",
     "indents": [
       0,
       0
     ]
   },
   "motion_changeyby": {
-    "code": "self.go_to(self.x, self.y + __!inputs.['DY'][1]!__)  # change y by __!inputs.['DY'][1]!__.\n",
+    "code": "self.go_to(self.x, self.y + __!inputs.['DY'][1]!__)\n",
+    "comment": "change y by __!inputs.['DY'][1]!__.",
     "indents": [
       0,
       0
     ]
   },
   "motion_sety": {
-    "code": "self.go_to(self.x, __!inputs.['Y'][1]!__)  # set y to __!inputs.['Y'][1]!__.\n",
+    "code": "self.go_to(self.x, __!inputs.['Y'][1]!__)\n",
+    "comment": "set y to __!inputs.['Y'][1]!__.",
     "indents": [
       0,
       0
     ]
   },
   "motion_ifonedgebounce": {
-    "code": "if self.on_edge():\n    self.bounce(self.on_edge())  # bounce if on edge.\n",
+    "code": "if self.on_edge():\n    self.bounce(self.on_edge())\n",
+    "comment": "if on edge, bounce.",
     "indents": [
       0,
       0
     ]
   },
   "motion_setrotationstyle": {
-    "code": "self.restrict('rotation', '__!fields.['STYLE'][0]!__')  # set rotation style to __!fields.['STYLE'][0]!__.\n",
+    "code": "self.restrict('rotation', '__!fields.['STYLE'][0]!__')\n",
+    "comment": "set rotation style to __!fields.['STYLE'][0]!__.",
     "indents": [
       0,
       0
     ]
   },
   "looks_say": {
-    "code": "self.say(__!inputs.['MESSAGE'][1]!__)  # say __!inputs.['MESSAGE'][1]!__.\n",
+    "code": "self.say(__!inputs.['MESSAGE'][1]!__)\n",
+    "comment": "say __!inputs.['MESSAGE'][1]!__.",
     "indents": [
       0,
       0
     ]
   },
   "looks_sayforsecs": {
-    "code": "self.say(__!inputs.['MESSAGE'][1]!__, secs=__!inputs.['SECS'][1]!__)  # say __!inputs.['MESSAGE'][1]!__ for __!inputs.['SECS'][1]!__s.\n",
+    "code": "self.say(__!inputs.['MESSAGE'][1]!__, secs=__!inputs.['SECS'][1]!__)\n",
+    "comment": "say __!inputs.['MESSAGE'][1]!__ for __!inputs.['SECS'][1]!__s.",
     "indents": [
       0,
       0,
@@ -212,14 +241,16 @@
     ]
   },
   "looks_think": {
-    "code": "self.think(__!inputs.['MESSAGE'][1]!__)  # think __!inputs.['MESSAGE'][1]!__.\n",
+    "code": "self.think(__!inputs.['MESSAGE'][1]!__)\n",
+    "comment": "think __!inputs.['MESSAGE'][1]!__.",
     "indents": [
       0,
       0
     ]
   },
   "looks_thinkforsecs": {
-    "code": "self.think(__!inputs.['MESSAGE'][1]!__, secs=__!inputs.['SECS'][1]!__)  # think __!inputs.['MESSAGE'][1]!__ for __!inputs.['SECS'][1]!__s.\n",
+    "code": "self.think(__!inputs.['MESSAGE'][1]!__, secs=__!inputs.['SECS'][1]!__)\n",
+    "comment": "think __!inputs.['MESSAGE'][1]!__ for __!inputs.['SECS'][1]!__s.",
     "indents": [
       0,
       0,
@@ -228,23 +259,27 @@
     ]
   },
   "looks_switchcostumeto": {
-    "code": "self.set_costume(__!inputs.['COSTUME'][1]!__)  # switch costume.\n",
+    "code": "self.set_costume(__!inputs.['COSTUME'][1]!__)\n",
+    "comment": "switch costume to __!inputs.['COSTUME'][1]!__.",
     "indents": [
       0
     ]
   },
   "looks_costume": {
     "code": "'__!fields.['COSTUME'][0]!__'",
+    "comment": null,
     "indents": [
       0
     ]
   },
   "looks_nextcostume": {
-    "code": "self.next_costume()  # next costume.\n",
+    "code": "self.next_costume()\n",
+    "comment": "next costume.",
     "indents": []
   },
   "looks_switchbackdropto": {
-    "code": "game.set_backdrop(__!inputs.['BACKDROP'][1]!__)  # switch backdrop.\n",
+    "code": "game.set_backdrop(__!inputs.['BACKDROP'][1]!__)\n",
+    "comment": "switch backdrop to __!inputs.['BACKDROP'][1]!__.",
     "indents": [
       0,
       0
@@ -252,30 +287,35 @@
   },
   "looks_backdrops": {
     "code": "'__!fields.['BACKDROP'][0]!__'",
+    "comment": null,
     "indents": [
       0
     ]
   },
   "looks_nextbackdrop": {
-    "code": "game.next_backdrop()  # next backdrop.\n",
+    "code": "game.next_backdrop()\n",
+    "comment": "next backdrop.",
     "indents": []
   },
   "looks_changesizeby": {
-    "code": "self.resize(self.size + __!inputs.['CHANGE'][1]!__)  # change size by __!inputs.['CHANGE'][1]!__%.\n",
+    "code": "self.resize(self.size + __!inputs.['CHANGE'][1]!__)\n",
+    "comment": "change size by __!inputs.['CHANGE'][1]!__%.",
     "indents": [
       0,
       0
     ]
   },
   "looks_setsizeto": {
-    "code": "self.resize(__!inputs.['SIZE'][1]!__)  # set size to __!inputs.['SIZE'][1]!__%.\n",
+    "code": "self.resize(__!inputs.['SIZE'][1]!__)\n",
+    "comment": "set size to __!inputs.['SIZE'][1]!%.",
     "indents": [
       0,
       0
     ]
   },
   "looks_changeeffectby": {
-    "code": "self.effects['__!fields.['EFFECT'][0]!__'] += __!inputs.['CHANGE'][1]!__  # change __!fields.['EFFECT'][0]!__ effect by __!inputs.['CHANGE'][1]!__.\nself.affect()\n",
+    "code": "self.effects['__!fields.['EFFECT'][0]!__'] += __!inputs.['CHANGE'][1]!__\nself.affect()\n",
+    "comment": "change __!fields.['EFFECT'][0]!__ effect by __!inputs.['CHANGE'][1]!__.",
     "indents": [
       0,
       0,
@@ -284,7 +324,8 @@
     ]
   },
   "looks_seteffectto": {
-    "code": "self.effects['__!fields.['EFFECT'][0]!__'] = __!inputs.['VALUE'][1]!__  # set __!fields.['EFFECT'][0]!__ effect to __!inputs.['VALUE'][1]!__.\nself.affect()\n",
+    "code": "self.effects['__!fields.['EFFECT'][0]!__'] = __!inputs.['VALUE'][1]!__\nself.affect()\n",
+    "comment": "set __!fields.['EFFECT'][0]!__ effect to __!inputs.['VALUE'][1]!__.",
     "indents": [
       0,
       0,
@@ -293,26 +334,31 @@
     ]
   },
   "looks_cleargraphiceffects": {
-    "code": "self.clear_effects('looks')  # clear graphic effects.\n",
+    "code": "self.clear_effects('looks')\n",
+    "comment": "clear graphic effects.",
     "indents": []
   },
   "looks_show": {
-    "code": "self.show()  # show.\n",
+    "code": "self.show()\n",
+    "comment": "show.",
     "indents": []
   },
   "looks_hide": {
-    "code": "self.hide()  # hide.\n",
+    "code": "self.hide()\n",
+    "comment": "hide.",
     "indents": []
   },
   "looks_gotofrontback": {
-    "code": "game.set_layer(self, '__!fields.['FRONT_BACK'][0]!__')  # go to __!fields.['FRONT_BACK'][0]!__ layer.\n",
+    "code": "game.set_layer(self, '__!fields.['FRONT_BACK'][0]!__')\n",
+    "comment": "go to __!fields.['FRONT_BACK'][0]!__ layer.",
     "indents": [
       0,
       0
     ]
   },
   "looks_goforwardbackwardlayers": {
-    "code": "game.set_layer(self, self.layer + __!inputs.['NUM'][1]!__)  # go __!fields.['FORWARD_BACKWARD'][0]!__ __!inputs.['NUM'][1]!__ layers.\n",
+    "code": "game.set_layer(self, self.layer + __!inputs.['NUM'][1]!__)\n",
+    "comment": "go __!inputs.['NUM'][1]!__ layers.",
     "indents": [
       0,
       0,
@@ -321,7 +367,8 @@
     ]
   },
   "sound_playuntildone": {
-    "code": "self.play_sound(__!inputs.['SOUND_MENU'][1]!__, wait=True)  # play sound __!inputs.['SOUND_MENU'][1]!__ until done.\n",
+    "code": "self.play_sound(__!inputs.['SOUND_MENU'][1]!__, wait=True)\n",
+    "comment": "play sound __!inputs.['SOUND_MENU'][1]!__ until done.",
     "indents": [
       0,
       0
@@ -329,23 +376,27 @@
   },
   "sound_sounds_menu": {
     "code": "'__!fields.['SOUND_MENU'][0]!__'",
+    "comment": null,
     "indents": [
       0
     ]
   },
   "sound_play": {
-    "code": "self.play_sound(__!inputs.['SOUND_MENU'][1]!__)  # play sound __!inputs.['SOUND_MENU'][1]!__.\n",
+    "code": "self.play_sound(__!inputs.['SOUND_MENU'][1]!__)\n",
+    "comment": "play sound __!inputs.['SOUND_MENU'][1]!__.",
     "indents": [
       0,
       0
     ]
   },
   "sound_stopallsounds": {
-    "code": "game.stop_all_sounds()  # stop all sounds.\n",
+    "code": "game.stop_all_sounds()\n",
+    "comment": "stop all sounds.",
     "indents": []
   },
   "sound_changeeffectby": {
-    "code": "self.effects['__!fields.['EFFECT'][0]!__'] += __!inputs.['VALUE'][1]!__  # change __!fields.['EFFECT'][0]!__ effect by __!inputs.['VALUE'][1]!__.\nself.affect()\n",
+    "code": "self.effects['__!fields.['EFFECT'][0]!__'] += __!inputs.['VALUE'][1]!__\nself.affect()\n",
+    "comment": "change __!fields.['EFFECT'][0]!__ effect by __!inputs.['VALUE'][1]!__.",
     "indents": [
       0,
       0,
@@ -354,7 +405,8 @@
     ]
   },
   "sound_seteffectto": {
-    "code": "self.effects['__!fields.['EFFECT'][0]!__'] = __!inputs.['VALUE'][1]!__  # set __!fields.['EFFECT'][0]!__ effect to __!inputs.['VALUE'][1]!__.\nself.affect()\n",
+    "code": "self.effects['__!fields.['EFFECT'][0]!__'] = __!inputs.['VALUE'][1]!__\nself.affect()\n",
+    "comment": "set __!fields.['EFFECT'][0]!__ effect to __!inputs.['VALUE'][1]!__.",
     "indents": [
       0,
       0,
@@ -363,39 +415,45 @@
     ]
   },
   "sound_cleareffects": {
-    "code": "self.clear_effects('sound')  # clear sound effects.\n",
+    "code": "self.clear_effects('sound')\n",
+    "comment": "clear sound effects.",
     "indents": []
   },
   "sound_changevolumeby": {
-    "code": "self.volume += __!inputs.['VOLUME'][1]!__  # change volume by __!inputs.['VOLUME'][1]!__.\n",
+    "code": "self.volume += __!inputs.['VOLUME'][1]!__\n",
+    "comment": "change volume by __!inputs.['VOLUME'][1]!__.",
     "indents": [
       0,
       0
     ]
   },
   "sound_setvolumeto": {
-    "code": "self.volume = __!inputs.['VOLUME'][1]!__  # set volume to __!inputs.['VOLUME'][1]!__.\n",
+    "code": "self.volume = __!inputs.['VOLUME'][1]!__\n",
+    "comment": "set volume to __!inputs.['VOLUME'][1]!__.",
     "indents": [
       0,
       0
     ]
   },
   "event_broadcast": {
-    "code": "game.broadcast('__!inputs.['BROADCAST_INPUT'][1]!__')  # broadcast __!inputs.['BROADCAST_INPUT'][1]!__.\n",
+    "code": "game.broadcast('__!inputs.['BROADCAST_INPUT'][1]!__')\n",
+    "comment": "broadcast __!inputs.['BROADCAST_INPUT'][1]!__.",
     "indents": [
       0,
       0
     ]
   },
   "event_broadcastandwait": {
-    "code": "game.broadcast('__!inputs.['BROADCAST_INPUT'][1]!__', wait=True)  # broadcast __!inputs.['BROADCAST_INPUT'][1]!__ and wait.\n",
+    "code": "game.broadcast('__!inputs.['BROADCAST_INPUT'][1]!__', wait=True)\n",
+    "comment": "broadcast __!inputs.['BROADCAST_INPUT'][1]!__ and wait.",
     "indents": [
       0,
       0
     ]
   },
   "control_wait": {
-    "code": "self.wait(__!inputs.['DURATION'][1]!__)  # wait __!inputs.['DURATION'][1]!__ seconds.\n",
+    "code": "self.wait(__!inputs.['DURATION'][1]!__)\n",
+    "comment": "wait __!inputs.['DURATION'][1]!__ seconds.",
     "indents": [
       0,
       0
@@ -403,6 +461,7 @@
   },
   "control_wait_until": {
     "code": "while not __!inputs.['CONDITION'][1]!__:\n    self.wait()\n",
+    "comment": "wait until __!inputs.['CONDITION'][1]!__.",
     "indents": [
       0
     ]

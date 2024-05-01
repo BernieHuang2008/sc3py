@@ -82,7 +82,7 @@ def parse_sprite(sprite):
                 try:
                     blank_value = eval(f"block['{v_type}']{v_path}")
                 except KeyError as e:
-                    print(f"[*] KeyError: {e}", acceptable(e, v_type, v_path, block_id))
+                    print(f"[*] KeyError: {e} in <{block_id}>", acceptable(e, v_type, v_path, block_id))
                     blank_value = "None"
                 inline = (
                     code[code.find("__!" + v_str + "!__") - 2] != " "

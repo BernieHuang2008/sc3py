@@ -1,6 +1,6 @@
 import threading
 import scgame
-game = {}
+game={}
 
 
 class Generate_motion(scgame.Sprite):

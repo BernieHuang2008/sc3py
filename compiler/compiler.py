@@ -8,19 +8,11 @@ SETTINGS = {
 # global variables
 sprites = {}  # {sprite_name: sprite} The dict contains all the Sprites in this program.
 res_file = open(
-    "result/main.py", "w", encoding="utf-8"
+    "compiler/result/main.py", "w", encoding="utf-8"
 )  # Compiled Python code will be written to this file.
 
-# open Scratch Code File
-with open("project_allblocks.json", encoding="utf-8") as f:
-    j = json.load(f)
-    # Get all Sprites in this program, and store them in 'sprites'.
-    for sprite in j["targets"]:
-        name = sprite["name"]
-        sprites[name] = sprite
-
 # load format file (which is used to turn Scratch into Py Code)
-with open("sc_code_format.compiler.json") as f:
+with open("compiler/conf/sc3.mapping.json") as f:
     FORMAT = json.load(f)  # Load to 'FORMAT'
 
 
@@ -215,7 +207,15 @@ def parse_sprite(sprite):
     res_file.write("\n" + class_code_head + class_code.replace("\n", "\n    "))
 
 
-if __name__ == "__main__":
+def main():
+    # open Scratch Code File
+    with open("compiler/source/project.json", encoding="utf-8") as f:
+        j = json.load(f)
+        # Get all Sprites in this program, and store them in 'sprites'.
+        for sprite in j["targets"]:
+            name = sprite["name"]
+            sprites[name] = sprite
+
     # write import
     res_file.write("import threading\nimport scgame\ngame={}\n\n")  # import + `game={}`(just avoiding errors)
     print(list(sprites.keys()))
@@ -227,3 +227,6 @@ if __name__ == "__main__":
     # parse_sprite(sprites['sensing'])
     # parse_sprite(sprites['operators'])
     # parse_sprite(sprites['variables'])
+
+if __name__ == "__main__":
+    main()

@@ -1,2 +1,7 @@
 .idea
 /scgame/
+
+# pypi
+build/
+dist/
+*.egg-info/

@@ -1,4 +1,6 @@
-# scratch2py
+# sc3py
+
+convert `Scratch 3.0 Script` to `Python Code`!
 
 Compiler Scratch to Python, 
 Create more possibilities.

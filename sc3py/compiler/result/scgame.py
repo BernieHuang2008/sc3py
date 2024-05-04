@@ -18,18 +18,18 @@ class Sprite:
     def __init__(self):
         self.x = 0
         self.y = 0
-        self.costume = None
+        self.costumes = []
         self.size = 100
         self.direction = 90
         self.volume = 100
-        self.layer = game.get_layer(self)
+        self.layer = 0
         self.effects = {
             'COLOR': 0,
             'BRIGHTNESS': 0,
             'TRANSPARENCY': 0,
             'PITCH': 100
         }
-        self.backup = dict()
+        self.backup = {}
 
     def __str__(self):
         return self.__class__.__name__

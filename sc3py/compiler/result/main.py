@@ -6,7 +6,10 @@ game={}
 class Generate_motion(scgame.Sprite):
     def __init__(self):
         super().__init__()
-    
+        self.name = "motion"
+        self.costumes = {'造型2': scgame.Costume(name='造型2', file='0fb9be3e8397c983338cb71dc84d0b25.svg', center=(46, 53))}
+        self.sounds = {'喵': scgame.Sound(name='喵', file='83c36d806dc92327b9e7049a565c6bff.wav')}
+
     
     def event_whenflagclicked_1(self):
         self.move_forward(10)
@@ -33,10 +36,15 @@ class Generate_motion(scgame.Sprite):
     
         all(t.start() for t in threads)
         return threads
+
+
 class Generate_looks(scgame.Sprite):
     def __init__(self):
         super().__init__()
-    
+        self.name = "looks"
+        self.costumes = {'造型2': scgame.Costume(name='造型2', file='0fb9be3e8397c983338cb71dc84d0b25.svg', center=(46, 53))}
+        self.sounds = {'喵': scgame.Sound(name='喵', file='83c36d806dc92327b9e7049a565c6bff.wav')}
+
     
     def event_whenflagclicked_1(self):
         self.say('Hello!', secs=2)
@@ -66,10 +74,15 @@ class Generate_looks(scgame.Sprite):
     
         all(t.start() for t in threads)
         return threads
+
+
 class Generate_sound(scgame.Sprite):
     def __init__(self):
         super().__init__()
-    
+        self.name = "sound"
+        self.costumes = {'造型2': scgame.Costume(name='造型2', file='0fb9be3e8397c983338cb71dc84d0b25.svg', center=(46, 53))}
+        self.sounds = {'喵': scgame.Sound(name='喵', file='83c36d806dc92327b9e7049a565c6bff.wav')}
+
     
     def event_whenflagclicked_1(self):
         self.play_sound('喵', wait=True)
@@ -90,10 +103,15 @@ class Generate_sound(scgame.Sprite):
     
         all(t.start() for t in threads)
         return threads
+
+
 class Generate_events(scgame.Sprite):
     def __init__(self):
         super().__init__()
-    
+        self.name = "events"
+        self.costumes = {'造型2': scgame.Costume(name='造型2', file='0fb9be3e8397c983338cb71dc84d0b25.svg', center=(46, 53))}
+        self.sounds = {'喵': scgame.Sound(name='喵', file='83c36d806dc92327b9e7049a565c6bff.wav')}
+
     
     def event_whenflagclicked_1(self):
         game.broadcast('game.broadcast(message1)')
@@ -155,10 +173,15 @@ class Generate_events(scgame.Sprite):
     
         all(t.start() for t in threads)
         return threads
+
+
 class Generate_control(scgame.Sprite):
     def __init__(self):
         super().__init__()
-    
+        self.name = "control"
+        self.costumes = {'造型2': scgame.Costume(name='造型2', file='0fb9be3e8397c983338cb71dc84d0b25.svg', center=(46, 53))}
+        self.sounds = {'喵': scgame.Sound(name='喵', file='83c36d806dc92327b9e7049a565c6bff.wav')}
+
     
     def event_whenflagclicked_1(self):
         self.wait(1)
@@ -179,3 +202,4 @@ class Generate_control(scgame.Sprite):
     
         all(t.start() for t in threads)
         return threads
+

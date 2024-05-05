@@ -226,19 +226,33 @@ def parse_sprite(sprite):
                 f"'{s['name']}': scgame.Sound(name='{s['name']}', file='{s['md5ext']}')"
             )
         return "{%s}" % (", ".join(sound_code))
+    
+    def parse_init():
+        return f"""
+        self.x = {sprite['x']}
+        self.y = {sprite['y']}
+        self.size = {sprite['size']}
+        self.direction = {sprite['direction']}
+        game.layer.place(self, {sprite['layerOrder']})
+        """.strip()
 
     code_codeblocks = parse_codeblocks()
     code_costumes = parse_costumes()
     code_sounds = parse_sounds()
+    code_init = parse_init()
 
     # contruct final class code
     code_res = f"""
 class Generate_{sprite["name"].replace(" ", "_")}(scgame.Sprite):
     def __init__(self):
         super().__init__()
+
         self.name = "{sprite["name"]}"
         self.costumes = {code_costumes}
         self.sounds = {code_sounds}
+
+        # basic properties
+        {code_init}
 
     {code_codeblocks}
 

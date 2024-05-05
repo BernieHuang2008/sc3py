@@ -312,15 +312,15 @@
     "indents": []
   },
   "looks_gotofrontback": {
-    "code": "game.set_layer(self, '__!fields.['FRONT_BACK'][0]!__')\n",
+    "code": "game.layer.adjust(self, '__!fields.['FRONT_BACK'][0]!__')\n",
     "comment": "go to __!fields.['FRONT_BACK'][0]!__ layer.",
     "indents": [
       0
     ]
   },
   "looks_goforwardbackwardlayers": {
-    "code": "game.set_layer(self, self.layer + __!inputs.['NUM'][1]!__)\n",
-    "comment": "go __!inputs.['NUM'][1]!__ layers.",
+    "code": "game.layer.adjust(self, __!inputs.['NUM'][1]!__)\n",
+    "comment": "go forward/backward __!inputs.['NUM'][1]!__ layers.",
     "indents": [
       0
     ]

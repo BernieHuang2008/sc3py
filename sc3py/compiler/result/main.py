@@ -6,9 +6,17 @@ game={}
 class Generate_motion(scgame.Sprite):
     def __init__(self):
         super().__init__()
+
         self.name = "motion"
         self.costumes = {'造型2': scgame.Costume(name='造型2', file='0fb9be3e8397c983338cb71dc84d0b25.svg', center=(46, 53))}
         self.sounds = {'喵': scgame.Sound(name='喵', file='83c36d806dc92327b9e7049a565c6bff.wav')}
+
+        # basic properties
+        self.x = 0
+        self.y = 0
+        self.size = 100
+        self.direction = -118.07248693585294
+        game.layer.place(self, 8)
 
     
     def event_whenflagclicked_1(self):
@@ -41,9 +49,17 @@ class Generate_motion(scgame.Sprite):
 class Generate_looks(scgame.Sprite):
     def __init__(self):
         super().__init__()
+
         self.name = "looks"
         self.costumes = {'造型2': scgame.Costume(name='造型2', file='0fb9be3e8397c983338cb71dc84d0b25.svg', center=(46, 53))}
         self.sounds = {'喵': scgame.Sound(name='喵', file='83c36d806dc92327b9e7049a565c6bff.wav')}
+
+        # basic properties
+        self.x = -68.1304970394062
+        self.y = 19.10814159246027
+        self.size = 100
+        self.direction = -118.07248693585294
+        game.layer.place(self, 7)
 
     
     def event_whenflagclicked_1(self):
@@ -79,9 +95,17 @@ class Generate_looks(scgame.Sprite):
 class Generate_sound(scgame.Sprite):
     def __init__(self):
         super().__init__()
+
         self.name = "sound"
         self.costumes = {'造型2': scgame.Costume(name='造型2', file='0fb9be3e8397c983338cb71dc84d0b25.svg', center=(46, 53))}
         self.sounds = {'喵': scgame.Sound(name='喵', file='83c36d806dc92327b9e7049a565c6bff.wav')}
+
+        # basic properties
+        self.x = 42.526555338817175
+        self.y = 19.074579258600977
+        self.size = 100
+        self.direction = -118.07248693585294
+        game.layer.place(self, 6)
 
     
     def event_whenflagclicked_1(self):
@@ -108,9 +132,17 @@ class Generate_sound(scgame.Sprite):
 class Generate_events(scgame.Sprite):
     def __init__(self):
         super().__init__()
+
         self.name = "events"
         self.costumes = {'造型2': scgame.Costume(name='造型2', file='0fb9be3e8397c983338cb71dc84d0b25.svg', center=(46, 53))}
         self.sounds = {'喵': scgame.Sound(name='喵', file='83c36d806dc92327b9e7049a565c6bff.wav')}
+
+        # basic properties
+        self.x = 76.35142468600206
+        self.y = -40.61417286612703
+        self.size = 100
+        self.direction = -118.07248693585294
+        game.layer.place(self, 1)
 
     
     def event_whenflagclicked_1(self):
@@ -178,9 +210,17 @@ class Generate_events(scgame.Sprite):
 class Generate_control(scgame.Sprite):
     def __init__(self):
         super().__init__()
+
         self.name = "control"
         self.costumes = {'造型2': scgame.Costume(name='造型2', file='0fb9be3e8397c983338cb71dc84d0b25.svg', center=(46, 53))}
         self.sounds = {'喵': scgame.Sound(name='喵', file='83c36d806dc92327b9e7049a565c6bff.wav')}
+
+        # basic properties
+        self.x = -90.79198179965546
+        self.y = 54.89513205018057
+        self.size = 100
+        self.direction = -118.07248693585294
+        game.layer.place(self, 2)
 
     
     def event_whenflagclicked_1(self):

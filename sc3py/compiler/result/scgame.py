@@ -1,8 +1,10 @@
 """
 It's the document of scgame.
 """
+
 import math
 import time
+import itertools
 
 
 def deg2rad(deg):
@@ -18,17 +20,14 @@ class Sprite:
     def __init__(self):
         self.x = 0
         self.y = 0
-        self.costumes = []
         self.size = 100
         self.direction = 90
-        self.volume = 100
+        self.visible = True
         self.layer = 0
-        self.effects = {
-            'COLOR': 0,
-            'BRIGHTNESS': 0,
-            'TRANSPARENCY': 0,
-            'PITCH': 100
-        }
+        self.volume = 100
+        self.effects = {"COLOR": 0, "BRIGHTNESS": 0, "TRANSPARENCY": 0, "PITCH": 100}
+        self.costumes = {}
+        self.sounds = {}
         self.backup = {}
 
     def __str__(self):
@@ -113,9 +112,9 @@ class Sprite:
         :param mode: mode to bounce. ('left', 'right', 'top' or 'bottom')
         :return: None
         """
-        if mode in ['left', 'right']:
-            self.direction = - self.direction
-        elif mode in ['top', 'bottom']:
+        if mode in ["left", "right"]:
+            self.direction = -self.direction
+        elif mode in ["top", "bottom"]:
             self.direction = 180 - self.direction
         self.direction %= 360
         self.draw()
@@ -196,7 +195,7 @@ class Sprite:
         Show this sprite.
         :return: None
         """
-        self.effects['TRANSPARENCY'] = self.backup.get('TRANSPARENCY', 100)
+        self.effects["TRANSPARENCY"] = self.backup.get("TRANSPARENCY", 100)
         self.draw()
 
     def hide(self):
@@ -204,8 +203,8 @@ class Sprite:
         Hide this sprite.
         :return: None
         """
-        self.backup['TRANSPARENCY'] = self.effects['TRANSPARENCY']
-        self.effects['TRANSPARENCY'] = 0
+        self.backup["TRANSPARENCY"] = self.effects["TRANSPARENCY"]
+        self.effects["TRANSPARENCY"] = 0
         self.draw()
 
     # PART3: sound
@@ -222,3 +221,96 @@ class Sprite:
         if timeout is None:
             timeout = 1 / game.fps
         time.sleep(timeout)
+
+
+class Costume:
+    def __init__(self, name: str, file: str, center: tuple[int, int]):
+        self.name = name
+        self.file = file
+        self.center = center
+        # auto-detect
+        self.format = file.split(".")[-1]
+
+
+class Sound:
+    def __init__(self, name: str, file: str):
+        self.name = name
+        self.file = file
+        # auto-detect
+        self.format = file.split(".")[-1]
+
+
+class Game_LayerManager:
+    def __init__(self):
+        self._layer = []
+
+    def set(self, sprites: list[Sprite]):
+        """
+        Set sprites to the layer manager.
+        :param sprites: sprites to set, [S_back, S2, S3, ..., S_front]
+        """
+        self._layer = [s for s in sprites]  # a copy. [S_back, ..., S_front]
+
+    def adjust1(self, sprite: Sprite, layer_name: str):
+        """
+        Adjust sprite to the `front`/`back` layer.
+        :param sprite: sprite to adjust
+        :param layer_name: the name of the layer
+        :return: None
+        """
+        src = self._layer.index(sprite)
+
+        if layer_name == "front":
+            dst = len(self._layer) - 1
+            self._layer.append(sprite)
+        elif layer_name == "back":
+            dst = 0
+            self._layer.insert(0, sprite)
+        else:
+            raise ValueError(f"Unknown layer name: {layer_name}")
+
+        # update all affected sprites
+        affected_start = min(src, dst)
+        affected_end = max(src, dst) + 1  # the 'sprite' itself
+        for i in range(affected_start, affected_end):
+            self._layer[i].layer = i
+
+    def adjust2(self, sprite: Sprite, layer_delta: int):
+        """
+        Adjust sprite to another layer.
+        :param sprite: sprite to adjust
+        :param layer_delta: the change in layer
+        :return: None
+        """
+        src = self._layer.index(sprite)
+        dst = src + layer_delta
+        dst = min(max(0, dst), len(self._layer) - 1)  # bound
+
+        self._layer.pop(src)
+        self._layer.insert(dst, sprite)
+
+        # update all affected sprites
+        affected_start = min(src, dst)
+        affected_end = max(src, dst) + 1  # the 'sprite' itself
+        for i in range(affected_start, affected_end):
+            self._layer[i].layer = i
+
+    def adjust(self, sprite: Sprite, layer: int | str):
+        """
+        Adjust sprite to another layer.
+        :param sprite: sprite to adjust
+        :param layer: the layer to adjust
+        :return: None
+        """
+        if isinstance(layer, int):
+            self.adjust2(sprite, layer - sprite.layer)
+        elif isinstance(layer, str):
+            self.adjust1(sprite, layer)
+        else:
+            raise ValueError(f"Unknown layer type: {type(layer)}")
+
+
+class Game:
+    def __init__(self):
+        self.fps = 60
+        self.layer = Game_LayerManager()

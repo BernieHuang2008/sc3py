@@ -214,7 +214,7 @@ def parse_sprite(sprite):
         costume_code = []
         for c in costumes:
             costume_code.append(
-                f"'{c['name']}': scgame.Costume(name='{c['name']}', file='{c['md5ext']}', center=({c['rotationCenterX']}, {c['rotationCenterY']}))"
+                f"'{c['name']}': scgame.Costume(name='{c['name']}', file='src/{c['md5ext']}', center=({c['rotationCenterX']}, {c['rotationCenterY']}))"
             )
         return "{%s}" % (", ".join(costume_code))
 
@@ -223,7 +223,7 @@ def parse_sprite(sprite):
         sound_code = []
         for s in sounds:
             sound_code.append(
-                f"'{s['name']}': scgame.Sound(name='{s['name']}', file='{s['md5ext']}')"
+                f"'{s['name']}': scgame.Sound(name='{s['name']}', file='src/{s['md5ext']}')"
             )
         return "{%s}" % (", ".join(sound_code))
     

@@ -7,16 +7,15 @@ SETTINGS = {
 
 # global vars
 sprites = {}  # {sprite_name: sprite}
-res_file = open("compiler/result/main.py", "w", encoding="utf-8")
 
-# load format file (which is used to turn Scratch into Py Code)
-with open("compiler/conf/sc3.mapping.json") as f:
+# Load format file (which is used to turn Scratch into Py Code)
+with open("/compiler/conf/sc3.mapping.json") as f: #if you are mac, /Users/username/xxx/sc3py/sc3py/compiler/conf/sc3.mapping.json
     FORMAT = json.load(f)  # Load to 'FORMAT'
 
 
 def acceptable(e, v_type, v_path, block_id):
     """
-    Check if the error during parsing is accpectable.
+    Check if the error during parsing is acceptable.
     """
     error_code = "//".join([str(e), v_type, v_path])
     if error_code in ["'SUBSTACK2'//inputs//['SUBSTACK2'][1]"]:
@@ -28,10 +27,11 @@ def acceptable(e, v_type, v_path, block_id):
         raise e
 
 
-def parse_sprite(sprite):
+def parse_sprite(sprite, res_file):
     """
     Parse a Sprite.
     :param sprite: a sprite from 'sprites'.
+    :param res_file: the file to write results to.
     :return: None. The result will be written to 'res_file' directly.
     """
 
@@ -64,8 +64,8 @@ def parse_sprite(sprite):
                 for i in range(var_counts):
                     # get info
                     v_index = code.find("__!")  # index
-                    v_str = code[v_index + 3 :]
-                    v_str = v_str[: v_str.find("!__")]  # string value
+                    v_str = code[v_index + 3:]
+                    v_str = v_str[:v_str.find("!__")]  # string value
                     v_type = v_str.split(".")[0]  # type
                     v_path = ".".join(v_str.split(".")[1:])  # path
                     indent = " " * indents[i]  # indent
@@ -104,7 +104,7 @@ def parse_sprite(sprite):
 
                 return code
 
-            # if the block is a instant value/var reference, return its value.
+            # if the block is an instant value/var reference, return its value.
             if isinstance(block_id, list):
                 # https://en.scratch-wiki.info/wiki/Scratch_File_Format
                 return {
@@ -226,7 +226,7 @@ def parse_sprite(sprite):
                 f"'{s['name']}': scgame.Sound(name='{s['name']}', file='src/{s['md5ext']}')"
             )
         return "{%s}" % (", ".join(sound_code))
-    
+
     def parse_init():
         return f"""
         self.x = {sprite['x']}
@@ -241,7 +241,7 @@ def parse_sprite(sprite):
     code_sounds = parse_sounds()
     code_init = parse_init()
 
-    # contruct final class code
+    # construct final class code
     code_res = f"""
 class Generate_{sprite["name"].replace(" ", "_")}(scgame.Sprite):
     def __init__(self):
@@ -264,7 +264,7 @@ class Generate_{sprite["name"].replace(" ", "_")}(scgame.Sprite):
 
 def main():
     # open Scratch Code File
-    with open("compiler/source/project.json", encoding="utf-8") as f:
+    with open("/compiler/source/project.json", encoding="utf-8") as f: #mac:/Users/xxx/xxx/sc3py/sc3py/compiler/source/project.json
         j = json.load(f)
         # Get all Sprites in this program, and store them in 'sprites'.
         for sprite in j["targets"]:
@@ -272,18 +272,14 @@ def main():
             sprites[name] = sprite
 
     # write import
-    res_file.write(
-        "import threading\nimport scgame\ngame={}\n\n"
-    )  # import + `game={}`(just avoiding errors)
-    print(list(sprites.keys()))
-    parse_sprite(sprites["motion"])
-    parse_sprite(sprites["looks"])
-    parse_sprite(sprites["sound"])
-    parse_sprite(sprites["events"])
-    parse_sprite(sprites["control"])
-    # parse_sprite(sprites['sensing'])
-    # parse_sprite(sprites['operators'])
-    # parse_sprite(sprites['variables'])
+    with open("/compiler/result/main.py", "w", encoding="utf-8") as res_file: #/Users/xxx/xxx/sc3py/sc3py/compiler/result/main.py
+        res_file.write(
+            "import threading\nimport scgame\ngame={}\n\n"
+        )  # import + `game={}`(just avoiding errors)
+        print(list(sprites.keys()))
+        for sprite_name in ["motion", "looks", "sound", "events", "control"]:
+            if sprite_name in sprites:
+                parse_sprite(sprites[sprite_name], res_file)
 
 
 if __name__ == "__main__":

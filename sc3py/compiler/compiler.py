@@ -225,13 +225,16 @@ def parse_sprite(sprite, res_file, format_file):
         return "{%s}" % (", ".join(sound_code))
 
     def parse_init():
-        return f"""
+        if sprite['isStage']:
+            return f"game.layer.place(self, 0)"
+        else:
+            return f"""
         self.x = {sprite['x']}
         self.y = {sprite['y']}
         self.size = {sprite['size']}
         self.direction = {sprite['direction']}
         game.layer.place(self, {sprite['layerOrder']})
-        """.strip()
+            """.strip()
 
     code_codeblocks = parse_codeblocks()
     code_costumes = parse_costumes()

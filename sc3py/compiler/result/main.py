@@ -8,8 +8,8 @@ class Generate_motion(scgame.Sprite):
         super().__init__()
 
         self.name = "motion"
-        self.costumes = {'造型2': scgame.Costume(name='造型2', file='0fb9be3e8397c983338cb71dc84d0b25.svg', center=(46, 53))}
-        self.sounds = {'喵': scgame.Sound(name='喵', file='83c36d806dc92327b9e7049a565c6bff.wav')}
+        self.costumes = {'造型2': scgame.Costume(name='造型2', file='src/0fb9be3e8397c983338cb71dc84d0b25.svg', center=(46, 53))}
+        self.sounds = {'喵': scgame.Sound(name='喵', file='src/83c36d806dc92327b9e7049a565c6bff.wav')}
 
         # basic properties
         self.x = 0
@@ -51,8 +51,8 @@ class Generate_looks(scgame.Sprite):
         super().__init__()
 
         self.name = "looks"
-        self.costumes = {'造型2': scgame.Costume(name='造型2', file='0fb9be3e8397c983338cb71dc84d0b25.svg', center=(46, 53))}
-        self.sounds = {'喵': scgame.Sound(name='喵', file='83c36d806dc92327b9e7049a565c6bff.wav')}
+        self.costumes = {'造型2': scgame.Costume(name='造型2', file='src/0fb9be3e8397c983338cb71dc84d0b25.svg', center=(46, 53))}
+        self.sounds = {'喵': scgame.Sound(name='喵', file='src/83c36d806dc92327b9e7049a565c6bff.wav')}
 
         # basic properties
         self.x = -68.1304970394062
@@ -80,8 +80,8 @@ class Generate_looks(scgame.Sprite):
         self.clear_effects('looks')
         self.show()
         self.hide()
-        game.set_layer(self, 'front')
-        game.set_layer(self, self.layer + 1)
+        game.layer.adjust(self, 'front')
+        game.layer.adjust(self, 1)
     
     def event_whenflagclicked(self):
         threads = [
@@ -97,8 +97,8 @@ class Generate_sound(scgame.Sprite):
         super().__init__()
 
         self.name = "sound"
-        self.costumes = {'造型2': scgame.Costume(name='造型2', file='0fb9be3e8397c983338cb71dc84d0b25.svg', center=(46, 53))}
-        self.sounds = {'喵': scgame.Sound(name='喵', file='83c36d806dc92327b9e7049a565c6bff.wav')}
+        self.costumes = {'造型2': scgame.Costume(name='造型2', file='src/0fb9be3e8397c983338cb71dc84d0b25.svg', center=(46, 53))}
+        self.sounds = {'喵': scgame.Sound(name='喵', file='src/83c36d806dc92327b9e7049a565c6bff.wav')}
 
         # basic properties
         self.x = 42.526555338817175
@@ -134,8 +134,8 @@ class Generate_events(scgame.Sprite):
         super().__init__()
 
         self.name = "events"
-        self.costumes = {'造型2': scgame.Costume(name='造型2', file='0fb9be3e8397c983338cb71dc84d0b25.svg', center=(46, 53))}
-        self.sounds = {'喵': scgame.Sound(name='喵', file='83c36d806dc92327b9e7049a565c6bff.wav')}
+        self.costumes = {'造型2': scgame.Costume(name='造型2', file='src/0fb9be3e8397c983338cb71dc84d0b25.svg', center=(46, 53))}
+        self.sounds = {'喵': scgame.Sound(name='喵', file='src/83c36d806dc92327b9e7049a565c6bff.wav')}
 
         # basic properties
         self.x = 76.35142468600206
@@ -212,8 +212,8 @@ class Generate_control(scgame.Sprite):
         super().__init__()
 
         self.name = "control"
-        self.costumes = {'造型2': scgame.Costume(name='造型2', file='0fb9be3e8397c983338cb71dc84d0b25.svg', center=(46, 53))}
-        self.sounds = {'喵': scgame.Sound(name='喵', file='83c36d806dc92327b9e7049a565c6bff.wav')}
+        self.costumes = {'造型2': scgame.Costume(name='造型2', file='src/0fb9be3e8397c983338cb71dc84d0b25.svg', center=(46, 53))}
+        self.sounds = {'喵': scgame.Sound(name='喵', file='src/83c36d806dc92327b9e7049a565c6bff.wav')}
 
         # basic properties
         self.x = -90.79198179965546

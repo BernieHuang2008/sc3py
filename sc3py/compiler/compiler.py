@@ -14,7 +14,7 @@ def acceptable(e, v_type, v_path, block_id):
     Check if the error during parsing is acceptable.
     """
     error_code = "//".join([str(e), v_type, v_path])
-    if error_code in ["'SUBSTACK2'//inputs//['SUBSTACK2'][1]"]:
+    if error_code in ["'SUBSTACK2'//inputs//SUBSTACK2"]:
         return "[√]"
     else:
         print("=" * 10, "UNACCEPTABLE ERROR", "=" * 10)
@@ -63,19 +63,20 @@ def parse_sprite(sprite, res_file, format_file):
                     v_index = code.find("__!")  # index
                     v_str = code[v_index + 3 :]
                     v_str = v_str[: v_str.find("!__")]  # string value
-                    v_type = v_str.split(".")[0]  # type
-                    v_path = ".".join(v_str.split(".")[1:])  # path
+                    v_type, v_name = v_str.split(".", 1)
                     indent = " " * indents[i]  # indent
 
                     # fill the blank
                     try:
-                        blank_value = eval(f"block['{v_type}']{v_path}")
+                        v_index = 1 if v_type == "inputs" else 0
+                        blank_value = block[v_type][v_name][v_index]
                     except KeyError as e:
                         print(
                             f"[*] KeyError: {e} in <{block_id}>",
-                            acceptable(e, v_type, v_path, block_id),
+                            acceptable(e, v_type, v_name, block_id),
                         )
                         blank_value = "None"
+
                     inline = (
                         code[code.find("__!" + v_str + "!__") - 2] != " "
                     )  # check if the blank is in a line.

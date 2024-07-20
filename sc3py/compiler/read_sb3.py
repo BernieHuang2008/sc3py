@@ -1,3 +1,4 @@
+import typing
 import zipfile
 import os
 
@@ -6,14 +7,14 @@ class Sb3File:
         self.sb3 = sb3
 
     @classmethod
-    def load(source: str) -> dict:
+    def load(cls, source: str) -> typing.Self:
         files = {}
         with zipfile.ZipFile(source, "r") as sb3:
             for file_info in sb3.infolist():
                 with sb3.open(file_info) as f:
                     files[file_info.filename] = f.read()
 
-        self = Sb3File(files)
+        self = cls(files)
         return self
 
     def extract_src(self, dest: str) -> None:

@@ -1,86 +1,7 @@
 {
-  "control_repeat": {
-    "code": "for _ in range(__!inputs.TIMES!__):\n    __!inputs.SUBSTACK!__\n",
-    "comment": "repeat __!inputs.TIMES!__ times.",
-    "indents": [
-      0,
-      4
-    ]
-  },
-  "motion_glidesecstoxy": {
-    "code": "self.go_to(__!inputs.X!__, __!inputs.Y!__, secs=__!inputs.SECS!__)\n",
-    "comment": "glide to (__!inputs.X!__, __!inputs.Y!__) in __!inputs.SECS!__s.",
-    "indents": [
-      0,
-      0,
-      0
-    ]
-  },
-  "control_forever": {
-    "code": "while True:\n    __!inputs.SUBSTACK!__\n",
-    "comment": "loop forever.",
-    "indents": [
-      4
-    ]
-  },
-  "control_if": {
-    "code": "if __!inputs.CONDITION!__:\n    __!inputs.SUBSTACK!__\n",
-    "comment": null,
-    "indents": [
-      0,
-      4
-    ]
-  },
-  "control_if_else": {
-    "code": "if __!inputs.CONDITION!__:\n    __!inputs.SUBSTACK!__\nelse:\n    __!inputs.SUBSTACK2!__\n",
-    "comment": null,
-    "indents": [
-      0,
-      4,
-      4
-    ]
-  },
-  "operator_equals": {
-    "code": "__!inputs.OPERAND1!__ == __!inputs.OPERAND2!__",
-    "comment": null,
-    "indents": [
-      0,
-      0
-    ]
-  },
-  "sensing_keypressed": {
-    "code": "game.is_keypressed(__!inputs.KEY_OPTION!__)",
-    "comment": null,
-    "indents": [
-      0,
-      0
-    ]
-  },
-  "sensing_keyoptions": {
-    "code": "'__!fields.KEY_OPTION!__'",
-    "comment": null,
-    "indents": [
-      0
-    ]
-  },
   "motion_movesteps": {
     "code": "self.move_forward(__!inputs.STEPS!__)\n",
     "comment": "move forward __!inputs.STEPS!__ steps.",
-    "indents": [
-      0
-    ]
-  },
-  "operator_random": {
-    "code": "scgame.random(__!inputs.FROM!__, __!inputs.TO!__)",
-    "comment": null,
-    "indents": [
-      0,
-      0
-    ]
-  },
-  "control_stop": {
-    "code": "game.stop('__!fields.STOP_OPTION!__')\n",
-    "comment": "stop __!fields.STOP_OPTION!__.",
     "indents": [
       0
     ]
@@ -133,6 +54,15 @@
     "code": "'__!fields.TO!__'",
     "comment": null,
     "indents": [
+      0
+    ]
+  },
+  "motion_glidesecstoxy": {
+    "code": "self.go_to(__!inputs.X!__, __!inputs.Y!__, secs=__!inputs.SECS!__)\n",
+    "comment": "glide to (__!inputs.X!__, __!inputs.Y!__) in __!inputs.SECS!__s.",
+    "indents": [
+      0,
+      0,
       0
     ]
   },
@@ -400,6 +330,45 @@
       0
     ]
   },
+  "control_repeat": {
+    "code": "for _ in range(__!inputs.TIMES!__):\n    __!inputs.SUBSTACK!__\n",
+    "comment": "repeat __!inputs.TIMES!__ times.",
+    "indents": [
+      0,
+      4
+    ]
+  },
+  "control_forever": {
+    "code": "while True:\n    __!inputs.SUBSTACK!__\n",
+    "comment": "loop forever.",
+    "indents": [
+      4
+    ]
+  },
+  "control_if": {
+    "code": "if __!inputs.CONDITION!__:\n    __!inputs.SUBSTACK!__\n",
+    "comment": null,
+    "indents": [
+      0,
+      4
+    ]
+  },
+  "control_if_else": {
+    "code": "if __!inputs.CONDITION!__:\n    __!inputs.SUBSTACK!__\nelse:\n    __!inputs.SUBSTACK2!__\n",
+    "comment": null,
+    "indents": [
+      0,
+      4,
+      4
+    ]
+  },
+  "control_stop": {
+    "code": "game.stop('__!fields.STOP_OPTION!__')\n",
+    "comment": "stop __!fields.STOP_OPTION!__.",
+    "indents": [
+      0
+    ]
+  },
   "control_wait": {
     "code": "self.wait(__!inputs.DURATION!__)\n",
     "comment": "wait __!inputs.DURATION!__ seconds.",
@@ -414,7 +383,109 @@
       0
     ]
   },
+  "sensing_keypressed": {
+    "code": "game.is_keypressed(__!inputs.KEY_OPTION!__)",
+    "comment": null,
+    "indents": [
+      0,
+      0
+    ]
+  },
+  "sensing_keyoptions": {
+    "code": "'__!fields.KEY_OPTION!__'",
+    "comment": null,
+    "indents": [
+      0
+    ]
+  },
   "sensing_touchingobject": {
     "code": 
+  },
+  "operator_add": {
+    "code": "(__!inputs.NUM1!__) + (__!inputs.NUM2!__)",
+    "comment": null,
+    "indents": [
+      0,
+      0
+    ]
+  },
+  "operator_substract": {
+    "code": "(__!inputs.NUM1!__) - (__!inputs.NUM2!__)",
+    "comment": null,
+    "indents": [
+      0,
+      0
+    ]
+  },
+  "operator_multiply": {
+    "code": "(__!inputs.NUM1!__) * (__!inputs.NUM2!__)",
+    "comment": null,
+    "indents": [
+      0,
+      0
+    ]
+  },
+  "operator_divide": {
+    "code": "(__!inputs.NUM1!__) / (__!inputs.NUM2!__)",
+    "comment": null,
+    "indents": [
+      0,
+      0
+    ]
+  },
+  "operator_lt": {
+    "code": "(__!inputs.OPERAND1!__) < (__!inputs.OPERAND2!__)",
+    "comment": null,
+    "indents": [
+      0,
+      0
+    ]
+  },
+  "operator_gt": {
+    "code": "(__!inputs.OPERAND1!__) > (__!inputs.OPERAND2!__)",
+    "comment": null,
+    "indents": [
+      0,
+      0
+    ]
+  },
+  "operator_equals": {
+    "code": "(__!inputs.OPERAND1!__) == (__!inputs.OPERAND2!__)",
+    "comment": null,
+    "indents": [
+      0,
+      0
+    ]
+  },
+  "operator_and": {
+    "code": "(__!inputs.OPERAND1!__) and (__!inputs.OPERAND2!__)",
+    "comment": null,
+    "indents": [
+      0,
+      0
+    ]
+  },
+  "operator_or": {
+    "code": "(__!inputs.OPERAND1!__) or (__!inputs.OPERAND2!__)",
+    "comment": null,
+    "indents": [
+      0,
+      0
+    ]
+  },
+  "operator_not": {
+    "code": "not (__!inputs.OPERAND!__)",
+    "comment": null,
+    "indents": [
+      0
+    ]
+  },
+  "operator_random": {
+    "code": "scgame.random(__!inputs.FROM!__, __!inputs.TO!__)",
+    "comment": null,
+    "indents": [
+      0,
+      0
+    ]
   }
 }
